@@ -1,0 +1,51 @@
+:root{
+    --dark-red: #c23564;
+    --white: white;
+    --back-gray: #262626;
+    --gray-light: rgb(226, 226, 226);
+}
+
+.box__new-info-author{
+    display:flex;
+    gap: 20px;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.box__new-img-item{
+    width:100%;
+}
+
+.box__new{
+    padding:10px 0px;
+    border-top: 1px solid var(--gray-light);
+    border-bottom: 1px solid var(--gray-light);
+    margin: 10px 0;
+}
+
+.box__new-info-title{
+    text-transform: uppercase;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--black-gray)
+}
+
+.box__new-info-author-atv{
+
+}
+
+.box__new-info-author-atv-item{
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+
+.desc{
+    text-align:justify;
+    font-size:1.6rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
