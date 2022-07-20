@@ -1,11 +1,9 @@
-"use strict";
-
-var $ = document.querySelector.bind(document);
-var $$ = document.querySelectorAll.bind(document);
+// var document.querySelector = document.querySelector.bind(document);
+// var document.querySelectorAll = document.querySelectorAll.bind(document);
 
 // hiệu ứng hover chuột vào menu item
-let menu__items = $$('.menu__item');
-let line = $('.line');
+let menu__items = document.querySelectorAll('.menu__item');
+let line = document.querySelector('.line');
 
 menu__items.forEach(function(item,index){
     item.onmouseover = function(){
@@ -22,15 +20,15 @@ menu__items.forEach(function(item,index){
 })
 // active unactive cart
 
-let cart__item = $('.cart__item');
-let cart__pc = $('.cart__pc');
-let cart__text = $('.cart__text');
+let cart__item = document.querySelector('.cart__item');
+let cart__pc = document.querySelector('.cart__pc');
+let cart__text = document.querySelector('.cart__text');
     cart__text.addEventListener('click',(e) => {
         e.stopPropagation();
         cart__pc.classList.toggle('active');
     })
 
-let close__cart = $('.close__cart-pc');
+let close__cart = document.querySelector('.close__cart-pc');
 
 cart__item.addEventListener('click',(e) => {
     e.stopPropagation();
@@ -42,7 +40,7 @@ close__cart.addEventListener('click',(e) => {
     cart__pc.classList.toggle('active');
 })
 
-let container = $('.container-fluid');
+let container = document.querySelector('.container-fluid');
 container.addEventListener('click',(e) => {
     e.stopPropagation();
     if(cart__pc.classList.contains('active')) {
@@ -53,12 +51,12 @@ container.addEventListener('click',(e) => {
 
 
 // scroll sticky menu
-let body = $('body');
-let header = $('.header');
+let body = document.querySelector('body');
+let header = document.querySelector('.header');
 body.onscroll = function(){
     if(window.scrollY > header.offsetHeight + 50){
-        let box__product = $('.box__product-detail');
-        let keep__the_size = $('.keep__the-size');
+        let box__product = document.querySelector('.box__product-detail');
+        let keep__the_size = document.querySelector('.keep__the-size');
         header.classList.add('stickky');
         if(box__product){
             if(box__product){
@@ -72,8 +70,8 @@ body.onscroll = function(){
 }
 
 
-let icon__bar = $('#icon__bar-megamenu');
-let submenuMega = $('.submenuMega');
+let icon__bar = document.querySelector('#icon__bar-megamenu');
+let submenuMega = document.querySelector('.submenuMega');
 
 icon__bar.addEventListener('click',(e) => {
     submenuMega.classList.toggle('active');
@@ -88,11 +86,11 @@ icon__bar.addEventListener('click',(e) => {
 
 //  active size productss
 
-let box__product_size_item = $$('.box__product-detail-size-number-item');
+let box__product_size_item = document.querySelectorAll('.box__product-detail-size-number-item');
 if(box__product_size_item){
     box__product_size_item.forEach((item,index) => {
         item.addEventListener('click', e => {
-            let item_active_befo = $('.box__product-detail-size-number-item.active');
+            let item_active_befo = document.querySelector('.box__product-detail-size-number-item.active');
             if(item_active_befo){
                 item_active_befo.classList.remove('active');
             }
@@ -105,9 +103,9 @@ if(box__product_size_item){
 // active color product
 
 //  tăng giảm số lượng san phẩm
-let subtraction = $$('.subtraction');
-let summation = $$('.summation');
-let inputValueAmount = $$('.box__amount-inputValue');
+let subtraction = document.querySelectorAll('.subtraction');
+let summation = document.querySelectorAll('.summation');
+let inputValueAmount = document.querySelectorAll('.box__amount-inputValue');
 if(inputValueAmount && summation && subtraction){
 
     subtraction.forEach((item,index) => {
@@ -129,8 +127,8 @@ if(inputValueAmount && summation && subtraction){
 
 //   hiển thị hướng dẫn chọn size
 
-let boxSize = $('.choose_guide');
-let box__chooseSezeGuide = $('.box__chooseSezeGuide');
+let boxSize = document.querySelector('.choose_guide');
+let box__chooseSezeGuide = document.querySelector('.box__chooseSezeGuide');
 
 if(boxSize && box__chooseSezeGuide){
     boxSize.addEventListener('click',() => {
@@ -141,7 +139,7 @@ if(boxSize && box__chooseSezeGuide){
 
 // close choose size
 
-let close_chooseSize = $('.close_chooseSize');
+let close_chooseSize = document.querySelector('.close_chooseSize');
 if(close_chooseSize){
     close_chooseSize.addEventListener('click', () => {
         box__chooseSezeGuide.classList.remove('active');
@@ -153,7 +151,7 @@ if(close_chooseSize){
 
 }
 
-let box__chooseSeziGuide = $('.box__chooseSeziGuide-item');
+let box__chooseSeziGuide = document.querySelector('.box__chooseSeziGuide-item');
 if(box__chooseSeziGuide){
     box__chooseSeziGuide.addEventListener('click', e => {
         e.stopPropagation();

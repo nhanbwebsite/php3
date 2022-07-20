@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ProvinceController;
 
+use App\Http\Controllers\APIDistrictController;
+
+use App\Http\Controllers\APIWardsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -66,6 +69,15 @@ Route::get('/allProducts', function () {
 
 // test
 
-Route::get('/province', [ProvinceController::class,'getprovince']);
+Route::get('/provinceAPI', [ProvinceController::class,'getprovince'])->name('provinceAPI');
+Route::get('/province',function(){
+    return view('clients.test');
+});
+
+// District
+
+Route::get('/districtAPI', [APIDistrictController::class,'getDistrictAPI'])->name('districtAPI');
+Route::get('/wardsAPI', [APIWardsController::class,'getWardsAPI'])->name('getWardsAPI');
 
 // end test
+

@@ -8,13 +8,16 @@ use App\Models\Province;
 class ProvinceController extends Controller
 {
     private $province;
-
+    public $html;
     public function __construct(){
         $this -> province = new Province();
     }
 
     public function getprovince(){
-        $data = $this -> province->getProvinces();
-        dd($data);
+
+        $data =   $this -> province->getProvinces();
+        return $data;
+
     }
 }
+

@@ -39,7 +39,7 @@ html {
     z-index: 1000;
     margin:0 auto;
     padding: 20px 0;
-    transition: all 1s !important;
+    /* transition: all 1s !important; */
 }
 
 .logo__and-nav{
@@ -54,7 +54,7 @@ html {
     position: fixed;
     left:0;
     right: 0;
-    transition: all 1s !important;
+    /* transition: all 1s !important; */
 }
 
 .menu{

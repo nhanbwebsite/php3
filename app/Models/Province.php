@@ -13,7 +13,9 @@ class Province extends Model
 
     public function getProvinces(){
         $data = DB::table('province') -> get();
-        return $data;
+        return response() -> json([
+            'data' =>  $data
+        ]);
     }
 
 }

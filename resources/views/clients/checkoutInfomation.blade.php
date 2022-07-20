@@ -85,7 +85,7 @@
             </div>
             <div class="col-12 col-md-12 col-lg-3 checkout__right">
                 <h3 class="title__ctdh"> Chi tiết đơn hàng </h3>
-                <button type="button" class="btn btn-primary">Primary</button>
+                <button type="button" class="btn btn-primary" id= "test">Primary</button>
             </div>
         </form>
         </div>
