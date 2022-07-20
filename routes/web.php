@@ -7,6 +7,8 @@ use App\Http\Controllers\ProvinceController;
 use App\Http\Controllers\APIDistrictController;
 
 use App\Http\Controllers\APIWardsController;
+
+use App\Http\Controllers\admin\CategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -55,6 +57,16 @@ Route::get('/news', function () {
 Route::get('/allProducts', function () {
     return view('clients.products');
 }) -> name('client.products');
+
+
+
+Route::prefix('admin')->group(function () {
+    Route::prefix('categories')->group(function (){
+        Route::get('/add',[CategoryController::class,'index']);
+   });
+
+
+});
 
 
 

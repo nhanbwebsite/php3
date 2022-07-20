@@ -1,0 +1,16 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+
+}
+.container-fluid{
+    /* background-color: pink; */
+    color:red;
+}
+
+a{
+    text-decoration:none;
+    color:blue;
+}
+

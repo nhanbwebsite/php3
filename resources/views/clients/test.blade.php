@@ -23,6 +23,7 @@
     <script>
         $(document).ready(function() {
             $.get('http://127.0.0.1:8000/provinceAPI', function(response) {
+                console.log(response);
                 let listProvince = response.data;
                 let html = listProvince.map(function(item) {
                     return `
@@ -77,10 +78,6 @@ function getWards(){
      $('#boxWards').html(html);
     })
 }
-
-
-
-
     </script>
 
 </body>
