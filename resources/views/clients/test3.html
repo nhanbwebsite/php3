@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+
+        class SinhVien {
+            constructor (hoTen, age, address){
+                this.hoTen = hoTen;
+                this.age = age;
+                this.address = address;
+            }
+
+          get  getname(){
+               return this.hoTen
+            }
+
+         get   getAge(){
+               return this.age
+            }
+
+          get  getAddress(){
+                return this.address
+            }
+
+          get  getInfomation(){
+                return `${this.hoTen} - ${this.age} - ${this.address}`
+            }
+            set setHoTen(hoTen) {
+                this.hoTen = hoTen;
+            }
+        }
+
+        let sinhvien1 = new SinhVien('Nguyễn Bá Nha' , 12, 'Long Mỹ - Hậu Giang');
+            sinhvien1.setHoTen = 'Bá Nha Nguyễn';
+
+
+
+    </script>
+
+</body>
+</html>

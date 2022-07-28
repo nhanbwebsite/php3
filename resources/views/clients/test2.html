@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<script>
+
+    let users = [
+        {   id: 1,
+            name: 'Nha'
+        },
+        {   id: 2,
+            name: 'Dat'
+        },
+        {   id: 3,
+            name: 'Duy'
+        },
+        {   id: 4,
+            name: 'Khoa'
+        },
+    ]
+
+    let comments = [
+        {
+            id:1,
+            userId: 1,
+            content: 'Test lấy bình luận theo user'
+        },
+        {
+            id:2,
+            userId: 2,
+            content: 'Lấy được commen theo user id chưa ?'
+        }
+    ]
+
+    function getcomments(){
+        return new Promise(resolve => {
+                setTimeout(function(){
+                    resolve(comments);
+                },1000)
+        })
+    }
+
+    getcomments()
+    .then((comments) => {
+        let userIds = comments.map((item) => {
+            return item.userId
+        })
+        return getUsserByUserId(userIds)
+                .then((users)=> {
+                   return {
+                    users: users,
+                    comments: comments
+                   }
+                })
+    })
+    .then((data) => {
+        let html = '';
+       data.comments.filter((item) => {
+            let user = data.users.find((user) => {
+                    return user.id == item.userId
+            })
+            html += `<li> ${user.name} : ${item.content}</li>`
+       })
+    })
+
+  function  getUsserByUserId(userIds){
+            return new Promise(resolve => {
+                setTimeout( () => {
+                 let listUser =   users.filter((item) => {
+                        return userIds.includes(item.id)
+                    })
+                    resolve(listUser)
+                },1000)
+            })
+    }
+
+
+</script>
+
+<button id="btn">click</button>
+
+<script>
+    let btn = document.querySelector('#btn');
+    btn.addEventListener('click', () => {
+        btn.style.backgroundColor = 'red';
+    })
+</script>
+
+</body>
+</html>

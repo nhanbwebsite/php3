@@ -31,8 +31,14 @@
 .box__product-detail-title{
     font-size:2rem;
     /* line-height: 3rem; */
+    text-transform: uppercase;
 }
 .box__product-detail-price{
+    font-size:2rem;
+    color: var(--dark-red);
+}
+
+.price-mol{
     font-size:2rem;
     color: var(--dark-red);
 }

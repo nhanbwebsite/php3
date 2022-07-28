@@ -12,9 +12,7 @@ class ProvinceController extends Controller
     public function __construct(){
         $this -> province = new Province();
     }
-
     public function getprovince(){
-
         $data =   $this -> province->getProvinces();
         return $data;
 

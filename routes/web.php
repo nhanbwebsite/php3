@@ -9,6 +9,8 @@ use App\Http\Controllers\APIDistrictController;
 use App\Http\Controllers\APIWardsController;
 
 use App\Http\Controllers\admin\CategoryController;
+
+use App\Http\Controllers\clients\ProductController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,14 +21,18 @@ use App\Http\Controllers\admin\CategoryController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// API
+Route::get('/productBySubdetails/{id}',[ProductController::class,'getProductsBySubDetail']);
 
+// End API
+// clients
 Route::get('/', function () {
     return view('clients.home');
 }) -> name('client.home');
 
-Route::get('/products_details', function () {
-    return view('clients.product_details');
-});
+
+Route::get('/product_details/{id}',[ProductController::class,'productDetails'])->name('proDetail');
+Route::get('productsByCategoryDetails/{id}',[ProductController::class,'getProductsBySubDetailClients'])->name('subDetails');
 
 Route::get('/cartEmpty', function () {
     return view('clients.cartEmpty');
@@ -35,6 +41,12 @@ Route::get('/cartEmpty', function () {
 Route::get('/cart', function () {
     return view('clients.cart');
 }) -> name('client.cart') ;
+
+
+Route::get('/productsByCategory', function () {
+    return view('clients.productsByCategory');
+}) -> name('client.products') ;
+
 
 Route::get('/checkoutInfomation', function () {
     return view('clients.checkoutInfomation');
@@ -52,19 +64,18 @@ Route::get('/news', function () {
     return view('clients.news');
 }) -> name('client.news');
 
-
-
 Route::get('/allProducts', function () {
     return view('clients.products');
 }) -> name('client.products');
-
-
-
+// end clients
+// Route admin
 Route::prefix('admin')->group(function () {
+            // Danh mục sản phẩm
     Route::prefix('categories')->group(function (){
+        // Thêm mới danh mục
         Route::get('/add',[CategoryController::class,'index']);
+        Route::post('/add',[CategoryController::class,'index']);
    });
-
 
 });
 
@@ -75,7 +86,10 @@ Route::prefix('admin')->group(function () {
 
 
 
+
 // end route lab
+
+
 
 
 
@@ -90,6 +104,11 @@ Route::get('/province',function(){
 
 Route::get('/districtAPI', [APIDistrictController::class,'getDistrictAPI'])->name('districtAPI');
 Route::get('/wardsAPI', [APIWardsController::class,'getWardsAPI'])->name('getWardsAPI');
+
+// test products
+
+
+
 
 // end test
 

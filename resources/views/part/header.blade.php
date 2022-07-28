@@ -1,4 +1,10 @@
 
+@php
+use App\Models\clients\Category;
+    $cate =  new Category();
+    $dataGetNam = $cate -> getCategory_nam();
+    // dd($dataGetNam);
+@endphp
 <div class="logo__and-nav">
     <div class="logo">
         {{-- <a href="#">  <img src="{{asset('clients/images/logo/logo.png')}}" alt="Logo"></a> --}}
@@ -12,76 +18,23 @@
            <a href="#">Nam</a>
            <div class="menu__child">
                    <ul class="menu__child-list font-normal">
+                       @foreach($dataGetNam as $item1)
                        <li class = "menu__child-list-item">
-                           <a href="#" class="menu__child-list-link">Áo nam</a>
+
+                        <a href="#" class="menu__child-list-link">{{$item1 -> sub_category_name}} </a>
                            <div class="menu__child-list-sub">
                                <ul class="menu__child-sub-list">
+                                @foreach($cate -> getCategory_nam_details($item1 -> id_sub_category) as $item2)
                                    <li class="menu__child-sub-item">
-                                       <a href="#">Xem tất cả</a>
+                                       <a href="{{route('subDetails',['id' => $item2 -> id_sub_detail])}}">{{$item2 -> sub_detail_name}}</a>
                                    </li>
-                                   <li class="menu__child-sub-item">
-                                       <a href="#">Áo polo nam</a>
-                                   </li>
-                                   <li class="menu__child-sub-item">
-                                       <a href="#">Áo thun tay ngắn</a>
-                                   </li>
-                                   <li class="menu__child-sub-item">
-                                       <a href="#">Áo thun tay dày</a>
-                                   </li>
-                                   <li class="menu__child-sub-item">
-                                       <a href="#">Áo thun tay dày</a>
-                                   </li>
-                                   <li class="menu__child-sub-item">
-                                       <a href="#">Áo sơ mi tay ngắn</a>
-                                   </li>
-                                   <li class="menu__child-sub-item">
-                                       <a href="#">Áo sơ mi tay dài</a>
-                                   </li>
-                                   <li class="menu__child-sub-item">
-                                       <a href="#">Áo khoát</a>
-                                   </li>
-                               </ul>
-                           </div>
-                       </li>
-                       <li class = "menu__child-list-item">
-                           <a href="#" class="menu__child-list-link">Quần nam</a>
-                           <div class="menu__child-list-sub">
-                               <ul class="menu__child-sub-list">
-                                   <li class="menu__child-sub-item">
-                                       <a href="#">Xem tất cả</a>
-                                   </li>
-                                   <li class="menu__child-sub-item">
-                                       <a href="#">Quần jean nam</a>
-                                   </li>
-                                   <li class="menu__child-sub-item">
-                                       <a href="#">Quần kaki nam</a>
-                                   </li>
-                                   <li class="menu__child-sub-item">
-                                       <a href="#">Quần short nam</a>
-                                   </li>
-                               </ul>
-                           </div>
-                       </li>
-                       <li class = "menu__child-list-item">
-                           <a href="#" class="menu__child-list-link">Phụ kiện</a>
-                           <div class="menu__child-list-sub">
-                               <ul class="menu__child-sub-list">
-                                   <li class="menu__child-sub-item">
-                                       <a href="#">thắt lưng</a>
-                                   </li>
-                                   <li class="menu__child-sub-item">
-                                       <a href="#">Ví/Balo</a>
-                                   </li>
-                                   <li class="menu__child-sub-item">
-                                       <a href="#">giày dép</a>
-                                   </li>
+                                @endforeach
 
                                </ul>
                            </div>
                        </li>
-                       <li class = "menu__child-list-item">
-                           <a href="#" class="menu__child-list-link">Giảm giá</a>
-                       </li>
+                       @endforeach
+
                    </ul>
            </div>
 

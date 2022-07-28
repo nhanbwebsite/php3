@@ -2,97 +2,21 @@
 
 {{-- banner --}}
 @section('banner')
+
 <a href=""> <img class="banner-item"  src="{{asset('clients/images/banner/banner_nam.jpg')}}" alt="banner"></a>
+
+
 @endsection
 
 {{-- content --}}
 @section('content')
 <div class="row box__pd mb-5">
-    {{-- <h2 class="title__header-textProduct">Sản phẩm giảm giá</h2> --}}
-    <div class="col-12 col-md-6 col-lg-3 product__box-col">
-        <div class="product__box-col-img">
-            <a class="product__box-col-img-link" href="#"><img src="{{asset('clients/images/products/Father_s_Day_mockupfott.jpg')}}" alt=""></a>
-            <a href="#" class="product__box-col-img-hover" ></a>
-           <div class="product__box-quickviews">
-            <i class="fa-solid fa-magnifying-glass" title="Xem nhanh sản phẩm" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i>
-           </div>
-           <div class="item_seller">
-            <img class="" src="{{asset('clients/images/seller/seller2.png')}}" alt="">
-           </div>
-        </div>
-        <div class="product__box-col-text">
-            <div class="product__box-col-text-title">
-                Tên sản phẩm
-            </div>
-            <div class="product__box-col-text-price">
-                <del class="product__box-col-text-price-del">450.000 ₫</del>
-                <span class="product__box-col-text-price-now">380.000 ₫</span>
-            </div>
-        </div>
+    <h2 class="title__header-textProduct"></h2>
+    <div class="row products___">
+
+
     </div>
-    <div class="col-12 col-md-6 col-lg-3 product__box-col">
-        <div class="product__box-col-img">
-            <a class="product__box-col-img-link" href="#"><img src="{{asset('clients/images/products/Father_s_Day_mockupfott.jpg')}}" alt=""></a>
-            <a href="#" class="product__box-col-img-hover" ></a>
-           <div class="product__box-quickviews">
-            <i class="fa-solid fa-magnifying-glass" title="Xem nhanh sản phẩm" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i>
-           </div>
-           <div class="item_seller">
-            <img class="" src="{{asset('clients/images/seller/seller2.png')}}" alt="">
-           </div>
-        </div>
-        <div class="product__box-col-text">
-            <div class="product__box-col-text-title">
-                Tên sản phẩm
-            </div>
-            <div class="product__box-col-text-price">
-                <del class="product__box-col-text-price-del">450.000 ₫</del>
-                <span class="product__box-col-text-price-now">380.000 ₫</span>
-            </div>
-        </div>
-    </div>
-    <div class="col-12 col-md-6 col-lg-3 product__box-col">
-        <div class="product__box-col-img">
-            <a class="product__box-col-img-link" href="#"><img src="{{asset('clients/images/products/Father_s_Day_mockupfott.jpg')}}" alt=""></a>
-            <a href="#" class="product__box-col-img-hover" ></a>
-           <div class="product__box-quickviews">
-            <i class="fa-solid fa-magnifying-glass" title="Xem nhanh sản phẩm" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i>
-           </div>
-           <div class="item_seller">
-            <img class="" src="{{asset('clients/images/seller/seller2.png')}}" alt="">
-           </div>
-        </div>
-        <div class="product__box-col-text">
-            <div class="product__box-col-text-title">
-                Tên sản phẩm
-            </div>
-            <div class="product__box-col-text-price">
-                <del class="product__box-col-text-price-del">450.000 ₫</del>
-                <span class="product__box-col-text-price-now">380.000 ₫</span>
-            </div>
-        </div>
-    </div>
-    <div class="col-12 col-md-6 col-lg-3 product__box-col">
-        <div class="product__box-col-img">
-            <a class="product__box-col-img-link" href="#"><img src="{{asset('clients/images/products/Father_s_Day_mockupfott.jpg')}}" alt=""></a>
-            <a href="#" class="product__box-col-img-hover" ></a>
-           <div class="product__box-quickviews">
-            <i class="fa-solid fa-magnifying-glass" title="Xem nhanh sản phẩm" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i>
-           </div>
-           <div class="item_seller">
-            <img class="" src="{{asset('clients/images/seller/seller2.png')}}" alt="">
-           </div>
-        </div>
-        <div class="product__box-col-text">
-            <div class="product__box-col-text-title">
-                Tên sản phẩm
-            </div>
-            <div class="product__box-col-text-price">
-                <del class="product__box-col-text-price-del">450.000 ₫</del>
-                <span class="product__box-col-text-price-now">380.000 ₫</span>
-            </div>
-        </div>
-    </div>
+
 
 </div>
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -201,6 +125,44 @@
       </div>
     </div>
   </div>
+
+  <script>
+    $.get('http://127.0.0.1:8000/api/productsBysubDetails/{{$id}}', (response) => {
+        let data = response.data;
+        let title__header_textProduct = document.querySelector('.title__header-textProduct');
+        title__header_textProduct.innerHTML = data[0].sub_detail_name;
+        let html = data.map((item) => {
+            console.log(item)
+            return `
+                <div class="col-12 col-md-6 col-lg-3 product__box-col">
+                    <div class="product__box-col-img">
+                        <a class="product__box-col-img-link" href="#"><img src="{{asset('clients/images/products/${item.image_name}')}}" alt="${item.image_name}"></a>
+                        <a href="/product_details/${item.id_product}" class="product__box-col-img-hover" ></a>
+                        <div class="product__box-quickviews">
+                        <i class="fa-solid fa-magnifying-glass" title="Xem nhanh sản phẩm" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i>
+                        </div>
+                        <div class="item_seller">
+                            ${item.product_price_discount > 0 ? ' <img class="" src="  {{asset('clients/images/seller/seller2.png')}}" alt="seller">':''}
+                        </div>
+                    </div>
+                    <div class="product__box-col-text">
+                        <div class="product__box-col-text-title">
+                            ${item.product_name}
+                        </div>
+                        <div class="product__box-col-text-price">
+                            <del class="product__box-col-text-price-del"> ${(item.product_price - (item.product_price *item.product_price_discount/100)).toLocaleString()} ₫</del>
+                            <span class="product__box-col-text-price-now"> ${item.product_price.toLocaleString()} ₫ </span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        })
+        let products___ = document.querySelector('.products___');
+
+        products___.innerHTML = html.join('');
+    })
+  </script>
+
 @endsection
 
 {{-- news --}}
@@ -219,6 +181,6 @@
 {{-- js fot page --}}
 
 @section('jsForPage')
-
+{{asset('clients/js/productsBySubDetail.js')}}
 @endsection
 {{-- end js for page --}}

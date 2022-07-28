@@ -10,26 +10,18 @@ Chi tiết sản phẩm
 {{-- banner --}}
 @section('banner')
 @endsection
-
 {{-- content --}}
 @section('content')
 <div class="box__product-detail">
 
    <div class="row box__product-responsive">
         <div class="col-12 col-md-12 col-lg-7 box__product-detail-desc">
-            <img src="{{asset('clients/images/products/10s21dpa053_-_mgrey_2__1.jpg')}}" alt="">
-
-            <img src="{{asset('clients/images/products/10s21dpa053_-_mgrey_5__1.jpg')}}" alt="">
-
-            <img src="{{asset('clients/images/products/10s21dpa053_-_mgrey_4__1.jpg')}}" alt="">
-
-            <img src="{{asset('clients/images/products/10s21dpa053_-_mgrey_6__1.jpg')}}" alt="">
         </div>
         <div class="col-12 col-md-12 col-lg-5 box__product-detail-info">
-            <h3 class="box__product-detail-title" >QUẦN JEAN PHỐI TAPE LƯNG. SLIM - 10S21DPA053</h3>
-            <h4 class="box__product-detail-price" >540.000 ₫</h4>
+            <h3 class="box__product-detail-title" ></h3>
+            <span class="box__product-detail-price" >540.000 </span> <span class="price-mol">₫</span>
             <p class="box__product-detail-code" ><b> MÃ HÀNG HÓA: </b> 10S21DPA053</p>
-           <div class="box__product-detail-color">
+           {{-- <div class="box__product-detail-color">
                 <h4 class="box__product-detail-color-text">Màu: </h4>
                 <div class="box__product-detail-color-img">
                     <div class="box__product-detail-color-img-item">
@@ -42,14 +34,10 @@ Chi tiết sản phẩm
                         <img src="{{asset('clients/images/products/10s21dpa053_-_mgrey_6__1.jpg')}}" title="Đen" alt="">
                     </div>
                 </div>
-           </div>
+           </div> --}}
            <div class="box__desction-details">
                 <h3 class="text__title">Mô tả sản phẩm</h3>
                 <div class="text_desction">
-                    <p>Chất liệu: COTTON DOUBLE FACE</p>
-                    <p>- Vải sợi Cotton được dệt theo "DOUBLE-FACE" có cấu trúc 2 bề mặt giống nhau, có thể sử dụng được cả 2 mặt vải</p>
-                    <p> - Thành phần: 87% Cotton 13% Polyester</p>
-
                 </div>
            </div>
            <div class="box__product-detail-size">
@@ -83,25 +71,52 @@ Chi tiết sản phẩm
            </div>
         </div>
    </div>
-<div class="box__chooseSezeGuide">
-
-    <div class="box__chooseSeziGuide-item">
-       <div class="box__chooseZiseGuide-text">
-        <i class="fa-solid fa-circle-xmark close_chooseSize"></i>
-            <h3 class="box__chooseSezeGuide-title">
-                HƯỚNG DẪN CHỌN SIZE
-            </h3>
-            <h3 class="box__chooseSezeGuide-proname"> QUẦN JEAN PHỐI TAPE LƯNG. SLIM - 10S21DPA053</h3>
-        </div>
-        <div class="img_chooseSize">
-            <img src="{{asset('clients/images/size/choose_size.jpg')}}" alt="">
+    <div class="box__chooseSezeGuide">
+        <div class="box__chooseSeziGuide-item">
+        <div class="box__chooseZiseGuide-text">
+            <i class="fa-solid fa-circle-xmark close_chooseSize"></i>
+                <h3 class="box__chooseSezeGuide-title">
+                    HƯỚNG DẪN CHỌN SIZE
+                </h3>
+                <h3 class="box__chooseSezeGuide-proname"> QUẦN JEAN PHỐI TAPE LƯNG. SLIM - 10S21DPA053</h3>
+            </div>
+            <div class="img_chooseSize">
+                <img src="{{asset('clients/images/size/choose_size.jpg')}}" alt="">
+            </div>
         </div>
     </div>
 
 </div>
-</div>
 
 
+<script>
+
+ $(function(){
+    $.get('http://127.0.0.1:8000/api/productDetails/{{$id}}', function(response) {
+
+    let product_name = '';
+    let product_price = '';
+    let product_price_discount = '';
+    let description = '';
+    let details = '';
+
+    let data =  response.data.forEach((item) => {
+        product_name = item.product_name;
+        product_price = item.product_price;
+        product_price_discount = item.product_price_discount;
+        description  = item.description;
+        details = item.details;
+    })
+
+    $('.text_desction').html(details);
+    $('.box__product-detail-desc').html(description);
+    $('.box__product-detail-title').html(product_name);
+    let box__product = document.querySelector('.box__product-detail');
+
+    })
+})
+
+</script>
 
 @endsection
 
