@@ -4,7 +4,8 @@
 @endsection
 
 @section('content')
-    <h2>Danh sách người dùng</h2>
+    <h2>Danh sách bài viết</h2>
+    <a href="{{route('amin.post.addGet')}}"  class="btn btn-primary mb-2">Thêm mới</a>
     <table class="table">
         <thead>
           <tr>
