@@ -11,16 +11,17 @@
 @section('content')
 <div class="row box__pd">
     <h2 class="title__header-textProduct">Sản phẩm mới</h2>
+
     <div class="col-12 col-md-6 col-lg-3 product__box-col">
         <div class="product__box-col-img">
-            <a class="product__box-col-img-link" href="#"><img src="{{asset('clients/images/products/simplicity_main.jpg')}}" alt=""></a>
+            <a class="product__box-col-img-link" href="#"><img src="{{asset('clients/images/products/slimfit_main.jpg')}}" alt=""></a>
             <a href="#" class="product__box-col-img-hover" ></a>
            <div class="product__box-quickviews">
             <i class="fa-solid fa-magnifying-glass" title="Xem nhanh sản phẩm" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i>
            </div>
-           <div class="item_seller">
-            <img class="" src="{{asset('clients/images/seller/seller2.png')}}" alt="">
-           </div>
+           <div class="item_New">
+            <img class="" src="{{asset('clients/images/seller/new.png')}}" alt="">
+        </div>
         </div>
         <div class="product__box-col-text">
             <div class="product__box-col-text-title">
@@ -32,6 +33,78 @@
             </div>
         </div>
     </div>
+    <div class="col-12 col-md-6 col-lg-3 product__box-col">
+        <div class="product__box-col-img">
+            <a class="product__box-col-img-link" href="#"><img src="{{asset('clients/images/products/3.jpg')}}" alt=""></a>
+            <a href="#" class="product__box-col-img-hover" ></a>
+           <div class="product__box-quickviews">
+            <i class="fa-solid fa-magnifying-glass" title="Xem nhanh sản phẩm" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i>
+           </div>
+           <div class="item_New">
+            <img class="" src="{{asset('clients/images/seller/new.png')}}" alt="">
+        </div>
+        </div>
+        <div class="product__box-col-text">
+            <div class="product__box-col-text-title">
+                Tên sản phẩm
+            </div>
+            <div class="product__box-col-text-price">
+                <del class="product__box-col-text-price-del">450.000 ₫</del>
+                <span class="product__box-col-text-price-now">380.000 ₫</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-3 product__box-col">
+        <div class="product__box-col-img">
+            <a class="product__box-col-img-link" href="#"><img src="{{asset('clients/images/products/4.jpg')}}" alt=""></a>
+            <a href="#" class="product__box-col-img-hover" ></a>
+           <div class="product__box-quickviews">
+            <i class="fa-solid fa-magnifying-glass" title="Xem nhanh sản phẩm" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i>
+           </div>
+           <div class="item_New">
+            <img class="" src="{{asset('clients/images/seller/new.png')}}" alt="">
+        </div>
+        </div>
+        <div class="product__box-col-text">
+            <div class="product__box-col-text-title">
+                Tên sản phẩm
+            </div>
+            <div class="product__box-col-text-price">
+                <del class="product__box-col-text-price-del">450.000 ₫</del>
+                <span class="product__box-col-text-price-now">380.000 ₫</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-3 product__box-col">
+        <div class="product__box-col-img">
+            <a class="product__box-col-img-link" href="#"><img src="{{asset('clients/images/products/5.jpg')}}" alt=""></a>
+            <a href="#" class="product__box-col-img-hover" ></a>
+           <div class="product__box-quickviews">
+            <i class="fa-solid fa-magnifying-glass" title="Xem nhanh sản phẩm" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i>
+           </div>
+           <div class="item_New">
+            <img class="" src="{{asset('clients/images/seller/new.png')}}" alt="">
+        </div>
+        </div>
+        <div class="product__box-col-text">
+            <div class="product__box-col-text-title">
+                Tên sản phẩm
+            </div>
+            <div class="product__box-col-text-price">
+                <del class="product__box-col-text-price-del">450.000 ₫</del>
+                <span class="product__box-col-text-price-now">380.000 ₫</span>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+{{-- sản phẩm mới --}}
+
+<div class="row box__pd">
+    <h2 class="title__header-textProduct">Sản phẩm giảm giá</h2>
     <div class="col-12 col-md-6 col-lg-3 product__box-col">
         <div class="product__box-col-img">
             <a class="product__box-col-img-link" href="#"><img src="{{asset('clients/images/products/3.jpg')}}" alt=""></a>
@@ -95,24 +168,16 @@
             </div>
         </div>
     </div>
-
-</div>
-
-{{-- sản phẩm mới --}}
-
-<div class="row box__pd">
-    <h2 class="title__header-textProduct">Sản phẩm giảm giá</h2>
-
     <div class="col-12 col-md-6 col-lg-3 product__box-col">
         <div class="product__box-col-img">
-            <a class="product__box-col-img-link" href="#"><img src="{{asset('clients/images/products/Father_s_Day_mockupfott.jpg')}}" alt=""></a>
+            <a class="product__box-col-img-link" href="#"><img src="{{asset('clients/images/products/4.jpg')}}" alt=""></a>
             <a href="#" class="product__box-col-img-hover" ></a>
            <div class="product__box-quickviews">
             <i class="fa-solid fa-magnifying-glass" title="Xem nhanh sản phẩm" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i>
            </div>
-           <div class="item_New">
-            <img class="" src="{{asset('clients/images/seller/new.png')}}" alt="">
-        </div>
+           <div class="item_seller">
+            <img class="" src="{{asset('clients/images/seller/seller2.png')}}" alt="">
+           </div>
         </div>
         <div class="product__box-col-text">
             <div class="product__box-col-text-title">
@@ -124,70 +189,6 @@
             </div>
         </div>
     </div>
-    <div class="col-12 col-md-6 col-lg-3 product__box-col">
-        <div class="product__box-col-img">
-            <a class="product__box-col-img-link" href="#"><img src="{{asset('clients/images/products/Father_s_Day_mockupfott.jpg')}}" alt=""></a>
-            <a href="#" class="product__box-col-img-hover" ></a>
-           <div class="product__box-quickviews">
-            <i class="fa-solid fa-magnifying-glass" title="Xem nhanh sản phẩm" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i>
-           </div>
-           <div class="item_New">
-            <img class="" src="{{asset('clients/images/seller/new.png')}}" alt="">
-        </div>
-        </div>
-        <div class="product__box-col-text">
-            <div class="product__box-col-text-title">
-                Tên sản phẩm
-            </div>
-            <div class="product__box-col-text-price">
-                <del class="product__box-col-text-price-del">450.000 ₫</del>
-                <span class="product__box-col-text-price-now">380.000 ₫</span>
-            </div>
-        </div>
-    </div>
-    <div class="col-12 col-md-6 col-lg-3 product__box-col">
-        <div class="product__box-col-img">
-            <a class="product__box-col-img-link" href="#"><img src="{{asset('clients/images/products/Father_s_Day_mockupfott.jpg')}}" alt=""></a>
-            <a href="#" class="product__box-col-img-hover" ></a>
-           <div class="product__box-quickviews">
-            <i class="fa-solid fa-magnifying-glass" title="Xem nhanh sản phẩm" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i>
-           </div>
-        <div class="item_New">
-            <img class="" src="{{asset('clients/images/seller/new.png')}}" alt="">
-        </div>
-        </div>
-        <div class="product__box-col-text">
-            <div class="product__box-col-text-title">
-                Tên sản phẩm
-            </div>
-            <div class="product__box-col-text-price">
-                <del class="product__box-col-text-price-del">450.000 ₫</del>
-                <span class="product__box-col-text-price-now">380.000 ₫</span>
-            </div>
-        </div>
-    </div>
-    <div class="col-12 col-md-6 col-lg-3 product__box-col">
-        <div class="product__box-col-img">
-            <a class="product__box-col-img-link" href="#"><img src="{{asset('clients/images/products/Father_s_Day_mockupfott.jpg')}}" alt=""></a>
-            <a href="#" class="product__box-col-img-hover" ></a>
-           <div class="product__box-quickviews">
-            <i class="fa-solid fa-magnifying-glass" title="Xem nhanh sản phẩm" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i>
-           </div>
-           <div class="item_New">
-            <img class="" src="{{asset('clients/images/seller/new.png')}}" alt="">
-        </div>
-        </div>
-        <div class="product__box-col-text">
-            <div class="product__box-col-text-title">
-                Tên sản phẩm
-            </div>
-            <div class="product__box-col-text-price">
-                <del class="product__box-col-text-price-del">450.000 ₫</del>
-                <span class="product__box-col-text-price-now">380.000 ₫</span>
-            </div>
-        </div>
-    </div>
-
 </div>
 
 

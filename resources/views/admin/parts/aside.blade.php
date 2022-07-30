@@ -13,7 +13,7 @@
         <img  src="{{asset('admin/images/user__admin.png')}}" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-        <a href="#" class="d-block">Tên admin quản trị</a>
+        <a href="#" class="d-block">Nguyễn Bá Nha</a>
       </div>
     </div>
 
@@ -49,13 +49,13 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="" class="nav-link">
+              <a href="{{route('amin.products.list')}}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Danh sách sản phẩm</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="" class="nav-link">
+              <a href="{{route('amin.products.addGet')}}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Thêm mới sản phẩm</p>
               </a>
@@ -63,9 +63,10 @@
 
           </ul>
         </li>
+{{-- Danh mục --}}
          <li class="nav-item">
           <a href=# class="nav-link">
-            <i class="fas fa-comments-dollar"></i>
+            <i class="fas fa-list-alt"></i>
             <p>
               Danh mục
               <i class="right fas fa-angle-left"></i>
@@ -73,13 +74,13 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="" class="nav-link">
+              <a href="{{route('amin.category.list')}}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Danh sách danh mục</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="" class="nav-link">
+              <a href="{{route('amin.category.addGet')}}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Thêm mới danh mục</p>
               </a>
@@ -87,6 +88,75 @@
           </ul>
         </li>
 
+    {{-- Post --}}
+        <li class="nav-item">
+            <a href=# class="nav-link">
+                <i class="fas fa-newspaper"></i>
+            <p>
+                Bài viết
+                <i class="right fas fa-angle-left"></i>
+            </p>
+            </a>
+            <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="{{route('amin.post.list')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Danh sách bài viết</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{route('amin.post.addGet')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Thêm bài viết</p>
+                </a>
+            </li>
+            </ul>
+        </li>
+        {{-- Người dùng --}}
+
+        <li class="nav-item">
+            <a href=# class="nav-link">
+                <i class="fas fa-users"></i>
+            <p>
+                Người dùng
+                <i class="right fas fa-angle-left"></i>
+            </p>
+            </a>
+            <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="{{route('amin.post.list')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Danh sách người dùng</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{route('amin.post.addGet')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Thêm người dùng</p>
+                </a>
+            </li>
+            </ul>
+        </li>
+
+{{-- Hóa đơn --}}
+<li class="nav-item">
+    <a href=# class="nav-link">
+      <i class="fas fa-money-check-alt"></i>
+    <p>
+       Hóa Đơn
+        <i class="right fas fa-angle-left"></i>
+    </p>
+    </a>
+    <ul class="nav nav-treeview">
+    <li class="nav-item">
+        <a href="{{route('admin.order.list')}}" class="nav-link">
+        <i class="far fa-circle nav-icon"></i>
+        <p>Danh sách hóa đơn</p>
+        </a>
+    </li>
+    </ul>
+</li>
     {{-- /.sidebar-menu --}}
   </div>
   {{-- /.sidebar --}}
+

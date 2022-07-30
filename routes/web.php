@@ -11,6 +11,16 @@ use App\Http\Controllers\APIWardsController;
 use App\Http\Controllers\admin\CategoryController;
 
 use App\Http\Controllers\clients\ProductController;
+// Post controller
+use  App\Http\Controllers\admin\PostController;
+// order
+use App\Http\Controllers\admin\OrderController;
+
+// user controller
+use App\Http\Controllers\admin\UserController;
+
+// ProductsController ADMIN
+use App\Http\Controllers\admin\ProductController as ProductControllerAmin;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -73,11 +83,43 @@ Route::prefix('admin')->group(function () {
             // Danh mục sản phẩm
     Route::prefix('categories')->group(function (){
         // Thêm mới danh mục
-        Route::get('/add',[CategoryController::class,'index']);
+        Route::get('/',[CategoryController::class,'listCategories'])->name('amin.category.list');
+        Route::get('/add',[CategoryController::class,'index'])->name('amin.category.addGet');
         Route::post('/add',[CategoryController::class,'index']);
+        Route::prefix('sub_categories')->group(function (){
+            // Thêm mới danh mục
+
+            Route::get('/add',[CategoryController::class,'index']);
+            Route::post('/add',[CategoryController::class,'index']);
+        });
    });
 
+   Route::prefix('products')->group(function (){
+    // Thêm mới danh mục
+    Route::get('/',[ProductControllerAmin::class,'index'])->name('amin.products.list');
+    Route::get('/add',[ProductControllerAmin::class,'addGet'])->name('amin.products.addGet');
+    Route::post('/add',[ProductControllerAmin::class,'index']);
 });
+   Route::prefix('post')->group(function (){
+    // Bài viết
+    Route::get('/',[PostController::class,'index'])->name('amin.post.list');
+    Route::get('/add',[PostController::class,'addGet'])->name('amin.post.addGet');
+
+});
+   Route::prefix('user')->group(function (){
+    // Bài viết
+    Route::get('/',[UserController::class,'index'])->name('amin.user.list');
+    Route::get('/add',[UserController::class,'addGet'])->name('amin.user.addGet');
+    Route::post('/add',[UserController::class,'addGet'])->name('amin.user.addGet');
+
+});
+   Route::prefix('order')->group(function (){
+    // Bài viết
+    Route::get('/',[OrderController::class,'index'])->name('admin.order.list');
+});
+
+});
+
 
 
 

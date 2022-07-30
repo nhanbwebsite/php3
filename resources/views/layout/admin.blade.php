@@ -9,9 +9,10 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   {{-- Font Awesome --}}
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+    <script src="{{asset('ckeditor/ckeditor.js')}}"></script>
   {{-- Theme style --}}
   <link rel="stylesheet" href="{{asset('admin/css/adminlte.css')}}">
-  <link rel="stylesheet" @yield('cssForThisPage')>
+  <link rel="stylesheet" href="@yield('cssForThisPage')">
   {{-- <link rel="stylesheet" href="../../build/css/admin.css"> --}}
 </head>
 <body class="hold-transition sidebar-mini">
@@ -57,7 +58,14 @@
 <script src="{{asset('admin/js/adminlte.js')}}"></script>
 
 {{-- js for this page --}}
-<script @yield('jsForThisPage')> </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+
+<script src="@yield('jsForThisPage')"> </script>
+
+<script>
+
+</script>
+
 </body>
 </html>

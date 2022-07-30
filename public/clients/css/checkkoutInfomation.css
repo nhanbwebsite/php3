@@ -50,3 +50,31 @@
 .btn-primary:hover{
     color: red;
 }
+
+
+.cart__number-checkout{
+    font-size:16px;
+    font-weight: bold;
+    position: absolute;
+    right:10px;
+    top: 0px;
+    color:black;
+}
+
+.relative{
+    position: relative;
+}
+
+.table{
+    font-size:16px;
+}
+
+.total_checkout{
+color:red;
+font-size:30px !important;
+}
+
+.details__products-checkout{
+    height:400px;
+   overflow:auto;
+}

@@ -447,10 +447,10 @@ use App\Models\clients\Category;
        </div>
 
        <div class="box__button-cartFloat mt-3">
-           <form>
+
                 <x-button type="button" class="box__button-buy" value="Thanh toán ngay"/>
                 <x-button type="button" class="box__button-buy" value="Xem chi tiết giỏ hàng"/>
-           </form>
+
             {{-- <div class="box__button-buy">Thành toán ngay</div> --}}
        </div>
 

@@ -40,7 +40,6 @@ class Product extends Model
             $data = DB::table('products')
             ->join('image_products', 'products.id','=','image_products.id_product')
             -> join('product_details','product_details.product_id','=','products.id')
-            -> join('categories','products.category_id','=','categories.id')
             ->where('products.id','=',$id) ->get();
             return $data;
         }

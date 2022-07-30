@@ -93,7 +93,6 @@ Chi tiết sản phẩm
 
  $(function(){
     $.get('http://127.0.0.1:8000/api/productDetails/{{$id}}', function(response) {
-
     let product_name = '';
     let product_price = '';
     let product_price_discount = '';

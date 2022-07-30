@@ -24,20 +24,20 @@
                <form class="row g-3 checkout__form">
                 <div class="col-md-6">
                   <label for="inputEmail4" class="form-label">Họ tên</label>
-                  <input type="text" class="form-control" >
+                  <input type="text" placeholder="Nhập họ tên của bạn" class="form-control" >
                 </div>
 
                 <div class="col-md-6">
                   <label for="inputPassword4" class="form-label">Địa chỉ</label>
-                  <input type="text" class="form-control" >
+                  <input placeholder="Nhập địa chỉ của bạn" type="text" class="form-control" >
                 </div>
                 <div class="col-md-6">
                   <label for="inputPassword4" class="form-label">Email</label>
-                  <input type="email" class="form-control" >
+                  <input placeholder="Nhập email của bạn" type="email" class="form-control" >
                 </div>
                 <div class="col-md-6">
                   <label for="inputPassword4" class="form-label">Số điện thoại</label>
-                  <input type="text" class="form-control" >
+                  <input placeholder="Nhập số điện thoại của bạn" type="text" class="form-control" >
                 </div>
 
                 <div class="col-md-6">
@@ -74,18 +74,137 @@
                 </div>
                 <div class="col-md-6">
                     <label for="inputPassword4" class="form-label">Địa chỉ giao hàng</label>
-                    <input type="text" class="form-control">
+                    <input placeholder="số nhà-đường: vd: 195 Nguyễn Tri Phương" type="text" class="form-control">
                 </div>
                 <div class="col-12">
                     <label for="exampleFormControlTextarea1" class="form-label">Ghí chú đơn hàng</label>
-                    <textarea placeholder="Ghi chú cho đơn hàng" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <textarea placeholder="Ghi chú cho đơn hàng- vd: có thể nhận hàng vào buổi chiều lúc 15h" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                   </div>
 
                {{-- end form --}}
             </div>
             <div class="col-12 col-md-12 col-lg-3 checkout__right">
                 <h3 class="title__ctdh"> Chi tiết đơn hàng </h3>
-                <button type="button" class="btn btn-primary" id= "test">Primary</button>
+                <div class="details__products-checkout">
+                    <div class="box__products-cart">
+                        <div class="row">
+                            <div class="col-3 relative">
+                               <img src="{{asset('clients/images/products/Father_s_Day_mockupfott.jpg')}}" alt="">
+                               <div class="cart__number-checkout">2</div>
+                            </div>
+                            <div class="col-9">
+                               <div class="box__products-title-cartFloat">
+                                <a href="#"> Áo thun nam tay ngắn - 10S22POL38</a>
+                                <i class="fa-solid fa-xmark delete__product-cartFloat"></i>
+                               </div>
+                               <p>Size: L</p>
+                               <p> 570.000 ₫</p>
+                               <div class="box__input-among-cart">
+
+                               </div>
+                            </div>
+                        </div>
+                       </div>
+                    <div class="box__products-cart">
+                        <div class="row">
+                            <div class="col-3 relative">
+                               <img src="{{asset('clients/images/products/Father_s_Day_mockupfott.jpg')}}" alt="">
+                               <div class="cart__number-checkout">2</div>
+                            </div>
+                            <div class="col-9">
+                               <div class="box__products-title-cartFloat">
+                                <a href="#"> Áo thun nam tay ngắn - 10S22POL38</a>
+                                <i class="fa-solid fa-xmark delete__product-cartFloat"></i>
+                               </div>
+                               <p>Size: L</p>
+                               <p> 570.000 ₫</p>
+                               <div class="box__input-among-cart">
+
+                               </div>
+                            </div>
+                        </div>
+                       </div>
+                    <div class="box__products-cart">
+                        <div class="row">
+                            <div class="col-3 relative">
+                               <img src="{{asset('clients/images/products/Father_s_Day_mockupfott.jpg')}}" alt="">
+                               <div class="cart__number-checkout">2</div>
+                            </div>
+                            <div class="col-9">
+                               <div class="box__products-title-cartFloat">
+                                <a href="#"> Áo thun nam tay ngắn - 10S22POL38</a>
+                                <i class="fa-solid fa-xmark delete__product-cartFloat"></i>
+                               </div>
+                               <p>Size: L</p>
+                               <p> 570.000 ₫</p>
+                               <div class="box__input-among-cart">
+
+                               </div>
+                            </div>
+                        </div>
+                       </div>
+                    <div class="box__products-cart">
+                        <div class="row">
+                            <div class="col-3 relative">
+                               <img src="{{asset('clients/images/products/Father_s_Day_mockupfott.jpg')}}" alt="">
+                               <div class="cart__number-checkout">2</div>
+                            </div>
+                            <div class="col-9">
+                               <div class="box__products-title-cartFloat">
+                                <a href="#"> Áo thun nam tay ngắn - 10S22POL38</a>
+                                <i class="fa-solid fa-xmark delete__product-cartFloat"></i>
+                               </div>
+                               <p>Size: L</p>
+                               <p> 570.000 ₫</p>
+                               <div class="box__input-among-cart">
+
+                               </div>
+                            </div>
+                        </div>
+                       </div>
+                    <div class="box__products-cart">
+                        <div class="row">
+                            <div class="col-3 relative">
+                               <img src="{{asset('clients/images/products/Father_s_Day_mockupfott.jpg')}}" alt="">
+                               <div class="cart__number-checkout">2</div>
+                            </div>
+                            <div class="col-9">
+                               <div class="box__products-title-cartFloat">
+                                <a href="#"> Áo thun nam tay ngắn - 10S22POL38</a>
+                                <i class="fa-solid fa-xmark delete__product-cartFloat"></i>
+                               </div>
+                               <p>Size: L</p>
+                               <p> 570.000 ₫</p>
+                               <div class="box__input-among-cart">
+
+                               </div>
+                            </div>
+                        </div>
+                       </div>
+                </div>
+                   <table class="table">
+                    <thead>
+
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">Tạm tính: </th>
+                        <td>2.880.000 đ</td>
+
+                      </tr>
+                      <tr>
+                        <th scope="row">Phí vận chuyển: </th>
+                        <td colspan="2">15.000 đ</td>
+
+                      </tr>
+                      <tr>
+                        <th scope="row" style="font-size:20px; color:var(--dark-red)">Tổng: </th>
+                        <td colspan="2" style="font-size:20px; color:var(--dark-red)">2.895.000 đ</td>
+
+                      </tr>
+                    </tbody>
+                    <x-button type="button" value="Thanh toán" class="box__button-buy"/>
+                  </table>
             </div>
         </form>
         </div>
