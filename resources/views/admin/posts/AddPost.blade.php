@@ -1,7 +1,7 @@
 @extends('layout.admin')
 
 @section('content')
-
+<h2>Thêm mới bài viết</h2>
 {{-- form add product --}}
 <form method="post" action="">
 

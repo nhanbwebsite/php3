@@ -18,6 +18,8 @@ use App\Http\Controllers\admin\OrderController;
 
 // user controller
 use App\Http\Controllers\admin\UserController;
+// comment controller
+use App\Http\Controllers\admin\CommentController;
 
 // ProductsController ADMIN
 use App\Http\Controllers\admin\ProductController as ProductControllerAmin;
@@ -116,6 +118,10 @@ Route::prefix('admin')->group(function () {
    Route::prefix('order')->group(function (){
     // Bài viết
     Route::get('/',[OrderController::class,'index'])->name('admin.order.list');
+});
+   Route::prefix('comments')->group(function (){
+    // Bài viết
+    Route::get('/',[CommentController::class,'listComment'])->name('admin.comment.list');
 });
 
 });

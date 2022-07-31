@@ -27,9 +27,8 @@
             <td style="vertical-align:middle"> Long Mỹ - Hậu Giang</td>
             <td style="vertical-align:middle">
                 <select style="width:150px" class="form-select" aria-label="Default select example">
-                    <option selected>Hiển thị</option>
+                    <option selected>Đã kích hoạt</option>
                     <option >Ẩn</option>
-
                   </select>
             </td>
             <td style="vertical-align:middle"><i title="cập nhật sản phẩm" class="fas fa-edit mr-2 edit__color"></i> <i class="fas fa-backspace delete__color" title="xóa sản phẩm"></i></td>
@@ -42,9 +41,8 @@
             <td style="vertical-align:middle"> 195 - Nguyễn Tri Phương</td>
             <td style="vertical-align:middle">
                 <select style="width:150px" class="form-select" aria-label="Default select example">
-                    <option selected>Hiển thị</option>
+                    <option selected>Chưa kích hoạt</option>
                     <option >Ẩn</option>
-
                   </select>
             </td>
             <td style="vertical-align:middle"><i title="cập nhật sản phẩm" class="fas fa-edit mr-2 edit__color"></i> <i class="fas fa-backspace delete__color" title="xóa sản phẩm"></i></td>
@@ -57,14 +55,12 @@
             <td style="vertical-align:middle"> 195 - Trần Hoàng Na</td>
             <td style="vertical-align:middle">
                 <select style="width:150px" class="form-select" aria-label="Default select example">
-                    <option selected>Hiển thị</option>
+                    <option selected>Đã kích hoạt</option>
                     <option >Ẩn</option>
-
                   </select>
             </td>
             <td style="vertical-align:middle"><i title="cập nhật sản phẩm" class="fas fa-edit mr-2 edit__color"></i> <i class="fas fa-backspace delete__color" title="xóa sản phẩm"></i></td>
           </tr>
-
         </tbody>
       </table>
 @endsection

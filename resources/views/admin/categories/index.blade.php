@@ -1,7 +1,7 @@
 @extends('layout.admin')
 @section('content')
     <h2>Danh sách danh mục</h2>
-    <table class="table table-striped">
+    <table class="table">
         <thead>
             <tr>
               <th scope="col">STT</th>

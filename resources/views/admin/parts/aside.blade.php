@@ -124,13 +124,13 @@
             </a>
             <ul class="nav nav-treeview">
             <li class="nav-item">
-                <a href="{{route('amin.post.list')}}" class="nav-link">
+                <a href="{{route('amin.user.list')}}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Danh sách người dùng</p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{route('amin.post.addGet')}}" class="nav-link">
+                <a href="{{route('amin.user.addGet')}}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Thêm người dùng</p>
                 </a>
@@ -156,6 +156,26 @@
     </li>
     </ul>
 </li>
+
+{{-- comment --}}
+<li class="nav-item">
+    <a href=# class="nav-link">
+        <i class="fas fa-comment"></i>
+    <p>
+      Bình luận
+        <i class="right fas fa-angle-left"></i>
+    </p>
+    </a>
+    <ul class="nav nav-treeview">
+    <li class="nav-item">
+        <a href="{{route('admin.comment.list')}}" class="nav-link">
+        <i class="far fa-circle nav-icon"></i>
+        <p>Danh sách bình luận</p>
+        </a>
+    </li>
+    </ul>
+</li>
+
     {{-- /.sidebar-menu --}}
   </div>
   {{-- /.sidebar --}}

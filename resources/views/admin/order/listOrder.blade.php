@@ -1,9 +1,9 @@
 @extends('layout.admin')
 @section('title')
-   Danh sách người dùng
+   Danh sách đặt hàng
 @endsection
 @section('content')
-    <h2>Danh sách người dùng</h2>
+    <h2>  Danh sách đặt hàng</h2>
     <table class="table">
         <thead>
           <tr>
@@ -11,7 +11,6 @@
             <th scope="col">Tên tài khoản</th>
             <th scope="col">Tên người nhận</th>
             <th scope="col">Địa chỉ nhận hàng</th>
-
             <th scope="col text-center">Trạng thái</th>
             <th scope="col"></th>
           </tr>

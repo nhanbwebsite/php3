@@ -3,8 +3,8 @@
 @section('content')
 
 {{-- form add product --}}
-<form method="post" action="">
-
+<h2 style="color:black">Thêm mới sản phẩm</h2>
+<form method="post">
     @error('msg')
     <div class="alert alert-danger text-center">
         {{-- Thông báo khi có lỗi --}}
@@ -15,7 +15,13 @@
     @if(Session::has('success'))
                 <div class="alert alert-success text-center">{{Session::get('success')}}</div>
     @endif
-
+    <div class="mb-3">
+        <label for="" class="form-label">Tên sản phẩm <span style="color:red" >*</span></label>
+        <input type="text" class="form-control" id="" name="product_name" value="{{old('product_name')}}" placeholder="Nhập tên sản phẩm">
+        @error('product_name')
+        <span style="color:red" >{{$message}}</span>
+        @enderror
+    </div>
     <div class="mb-3">
       <label for="" class="form-label">Giá sản phẩm <span style="color:red" >*</span></label>
       <input type="text" class="form-control" id="" name="product_price" value="{{old('product_price')}}" placeholder="Nhập giá sản phẩm">
@@ -49,9 +55,6 @@
     <button type="submit" class="btn btn-primary">Thêm</button>
     @csrf
 </form>
-
-
-
 @endsection
 {{-- end section content --}}
 
