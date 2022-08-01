@@ -18,11 +18,11 @@ return new class extends Migration
             $table->string('product_name');
             $table->string('product_status');
             $table->string('product_quantity');
-            $table->integer('id_sub_cate_details');
-            $table->foreign('id_sub_cate_details') -> references('sub_categogies_details') ->on('id_sub_detail');
+            $table->unsignedInteger('id_sub_cate_details');
+            $table->foreign('id_sub_cate_details') -> references('id_sub_detail') ->on('sub_categories_details');
             $table->integer('product_views');
             $table->double('product_price');
-            $table->integer('product_price_discount	');
+            $table->double('product_price_discount');
             $table->timestamps();
         });
     }

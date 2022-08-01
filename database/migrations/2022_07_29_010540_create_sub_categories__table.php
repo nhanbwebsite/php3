@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('sub_categories_', function (Blueprint $table) {
+        Schema::create('sub_categories', function (Blueprint $table) {
             $table->increments('id_sub_category');
             $table->string('sub_category_name');
-            $table->integer('category_id');
-            $table->foreign('category_id')->references('scategories')->on('id');
+            $table->unsignedInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 
