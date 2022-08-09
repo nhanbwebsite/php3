@@ -10,11 +10,15 @@ class Category extends Model
     use HasFactory;
 
     public function getCategory_nam(){
-        $data = DB::table('sub_categogies')
-        ->where('sub_categogies.category_id','=','1')->get();
+        $data = DB::table('sub_categories')
+        ->where('sub_categories.category_id','=','1')->get();
         return $data;
     }
-
+    public function getSubCategory_nu(){
+        $data = DB::table('sub_categories')
+        ->where('sub_categories.category_id','=','2')->get();
+        return $data;
+    }
     public function getCategory_nam_details($id){
         $data = DB::table('sub_categogies_details')
         -> where('id_sub_category','=',$id)

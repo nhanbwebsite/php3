@@ -23,6 +23,10 @@ use App\Http\Controllers\admin\CommentController;
 
 // ProductsController ADMIN
 use App\Http\Controllers\admin\ProductController as ProductControllerAmin;
+ use App\Http\Controllers\admin\CategoryAPIController;
+ use  App\Http\Controllers\admin\SubCategoryAPIController;
+use App\Http\Controllers\admin\SubCategoryDetailsAPIController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,7 +38,7 @@ use App\Http\Controllers\admin\ProductController as ProductControllerAmin;
 |
 */
 // API
-Route::get('/productBySubdetails/{id}',[ProductController::class,'getProductsBySubDetail']);
+
 
 // End API
 // clients
@@ -53,7 +57,6 @@ Route::get('/cartEmpty', function () {
 Route::get('/cart', function () {
     return view('clients.cart');
 }) -> name('client.cart') ;
-
 
 Route::get('/productsByCategory', function () {
     return view('clients.productsByCategory');
@@ -88,7 +91,9 @@ Route::prefix('admin')->group(function () {
         Route::get('/',[CategoryController::class,'listCategories'])->name('amin.category.list');
         Route::get('/add',[CategoryController::class,'index'])->name('amin.category.addGet');
         Route::post('/add',[CategoryController::class,'addPost']);
-        Route::get('/edit/{id}',[CategoryController::class,'edit']);
+        Route::get('/edit/{id}',[CategoryController::class,'edit'])->name('admin.getEditCategory');
+        Route::post('/edit/{id}',[CategoryController::class,'handleEdit'])->name('editPostCategory');
+        Route::get('detele/{id}',[CategoryController::class,'handleDeleteCategory'])->name('admin.deleteCategory');
         Route::prefix('sub_categories')->group(function (){
             // Thêm mới danh mục
             Route::get('/add',[CategoryController::class,'index']);
@@ -100,7 +105,10 @@ Route::prefix('admin')->group(function () {
         // Thêm mới danh mục
         Route::get('/',[ProductControllerAmin::class,'index'])->name('amin.products.list');
         Route::get('/add',[ProductControllerAmin::class,'addGet'])->name('amin.products.addGet');
-        Route::post('/add',[ProductControllerAmin::class,'index']);
+        Route::post('/add',[ProductControllerAmin::class,'addPost']);
+        Route::get('/update/{id}',[ProductControllerAmin::class,'update'])->name('amin.products.update');
+        Route::post('/update/{id}',[ProductControllerAmin::class,'updatehandle'])->name('amin.products.update');
+        Route::get('/delete/{id}',[ProductControllerAmin::class,'handleDelete'])->name('amin.products.delete');
 
     });
     Route::prefix('post')->group(function (){
@@ -155,7 +163,6 @@ Route::get('/districtAPI', [APIDistrictController::class,'getDistrictAPI'])->nam
 Route::get('/wardsAPI', [APIWardsController::class,'getWardsAPI'])->name('getWardsAPI');
 
 // test products
-
 
 
 

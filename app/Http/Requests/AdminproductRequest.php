@@ -39,4 +39,10 @@ class AdminproductRequest extends FormRequest
             'product_name' => 'Tên sản sẩm'
         ];
     }
+    public function prepareForValidation(){
+        $this ->merge([
+            //  tạo giá trị mặc định cho form
+            'created_at' => Now()
+        ]);
+    }
 }

@@ -1,9 +1,8 @@
-
 @php
-use App\Models\clients\Category;
-    $cate =  new Category();
-    $dataGetNam = $cate -> getCategory_nam();
-    // dd($dataGetNam);
+     use App\Models\clients\Category;
+    $cate = new Category();
+    $cateSubList = $cate->getCategory_nam();
+    $cateSubGList = $cate ->getSubCategory_nu();
 @endphp
 <div class="logo__and-nav">
     <div class="logo">
@@ -15,98 +14,31 @@ use App\Models\clients\Category;
            <a href="{{route('client.home')}}">Trang chủ</a>
        </li>
        <li class="menu__item bold">
-           <a href="#">Nam</a>
-           <div class="menu__child">
-                   <ul class="menu__child-list font-normal">
-                       @foreach($dataGetNam as $item1)
-                       <li class = "menu__child-list-item">
-
-                        <a href="#" class="menu__child-list-link">{{$item1 -> sub_category_name}} </a>
-                           <div class="menu__child-list-sub">
-                               <ul class="menu__child-sub-list">
-                                @foreach($cate -> getCategory_nam_details($item1 -> id_sub_category) as $item2)
-                                   <li class="menu__child-sub-item">
-                                       <a href="{{route('subDetails',['id' => $item2 -> id_sub_detail])}}">{{$item2 -> sub_detail_name}}</a>
-                                   </li>
-                                @endforeach
-
-                               </ul>
-                           </div>
-                       </li>
-                       @endforeach
-
-                   </ul>
-           </div>
-
-       </li>
+        <a href="#" class="menu__child-list-link">Nam</a>
+            <div class="menu__child">
+                <ul class="menu__child-list font-normal">
+                  @foreach($cateSubList as $item)
+                  <li class = "menu__child-list-item">
+                    <a href="#" class="menu__child-list-link" >{{$item->sub_category_name}}</a>
+                </li>
+                  @endforeach
+                </ul>
+            </div>
+        </li>
        <li class="menu__item bold">
            <a href="#" class="menu__child-list-link">Nữ</a>
            <div class="menu__child">
                <ul class="menu__child-list font-normal">
-                   <li class = "menu__child-list-item">
-                       <a href="#" class="menu__child-list-link" >Áo nữ</a>
-                       <div class="menu__child-list-sub">
-                           <ul class="menu__child-sub-list">
-                               <li class="menu__child-sub-item">
-                                   <a href="#">Xem tất cả</a>
-                               </li>
-                               <li class="menu__child-sub-item">
-                                   <a href="#">Áo thun nữ</a>
-                               </li>
-                               <li class="menu__child-sub-item">
-                                   <a href="#">Áo sơ mi tay ngắn</a>
-                               </li>
-                               <li class="menu__child-sub-item">
-                                   <a href="#">Áo sơ mi tay dài</a>
-                               </li>
-                               <li class="menu__child-sub-item">
-                                   <a href="#">Áo khoát</a>
-                               </li>
-                           </ul>
-                       </div>
-                   </li>
-                   <li class = "menu__child-list-item">
-                       <a href="#" class="menu__child-list-link">Quần nữ</a>
-                       <div class="menu__child-list-sub">
-                           <ul class="menu__child-sub-list">
-                               <li class="menu__child-sub-item">
-                                   <a href="#">Xem tất cả</a>
-                               </li>
-                               <li class="menu__child-sub-item">
-                                   <a href="#">Quần jean nữ</a>
-                               </li>
-                               <li class="menu__child-sub-item">
-                                   <a href="#">quần kaki nữ</a>
-                               </li>
-                               <li class="menu__child-sub-item">
-                                   <a href="#">quần short nữ</a>
-                               </li>
-
-                           </ul>
-                       </div>
-                   </li>
-                   <li class = "menu__child-list-item">
-                       <a href="#" class="menu__child-list-link">váy/đầm nữ</a>
-                       <div class="menu__child-list-sub">
-                           <ul class="menu__child-sub-list">
-
-                               <li class="menu__child-sub-item">
-                                   <a href="#">chân váy</a>
-                               </li>
-                               <li class="menu__child-sub-item">
-                                   <a href="#">đầm nữ</a>
-                               </li>
-
-                           </ul>
-                       </div>
-                   </li>
-                   <li class = "menu__child-list-item">
-                       <a href="#" class="menu__child-list-link">Giảm giá</a>
-                   </li>
+                @foreach($cateSubGList as $item)
+                  <li class = "menu__child-list-item">
+                    <a href="#" class="menu__child-list-link" >{{$item->sub_category_name}}</a>
+                </li>
+                  @endforeach
                </ul>
-       </div>
+           </div>
 
        </li>
+{{-- seller --}}
        <li class="menu__item item-seller">
            <a href="#"><img class="item__sell-imgSeller" src="{{asset('clients/images/seller/seller2.png')}}" alt=""></a>
        </li>

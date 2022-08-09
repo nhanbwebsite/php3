@@ -118,7 +118,8 @@ html {
     list-style: none;
     display:flex;
     gap: 2rem;
-
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 
@@ -155,6 +156,8 @@ html {
     transition: 0.5s linear;
     min-height:27rem;
     padding: 0 2rem;
+
+
 }
 
 

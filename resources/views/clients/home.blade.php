@@ -75,6 +75,7 @@
             </div>
         </div>
     </div>
+
     <div class="col-12 col-md-6 col-lg-3 product__box-col">
         <div class="product__box-col-img">
             <a class="product__box-col-img-link" href="#"><img src="{{asset('clients/images/products/5.jpg')}}" alt=""></a>

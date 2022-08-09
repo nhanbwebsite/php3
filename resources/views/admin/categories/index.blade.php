@@ -1,7 +1,20 @@
 @extends('layout.admin')
 @section('content')
     <h2>Danh sách danh mục</h2>
+    <a class="btn btn-primary mb-2" href="{{route('amin.category.addGet')}}">Thêm mới</a>
     <table class="table">
+        {{-- editSuccess --}}
+       @if(Session::has('editSuccess'))
+       <div class="alert alert-success" role="alert">
+            {{Session::get('editSuccess')}}
+      </div>
+       @endif
+       {{-- delete alert --}}
+       @if(Session::has('deleteSuccess'))
+       <div class="alert alert-success" role="alert">
+            {{Session::get('deleteSuccess')}}
+      </div>
+       @endif
         <thead>
             <tr>
               <th scope="col">STT</th>
@@ -10,23 +23,16 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td scope="row">1</td>
-              <td style="font-size:var(--font-size-20)"><a href="#">Nam</a></td>
-              <td><i class="fas fa-edit mr-2 edit__color" title="cập nhật danh mục"></i> <i class="fas fa-backspace delete__color" title="xóa danh mục"></i></td>
-            </tr>
-            <tr>
-              <td scope="row">2</td>
-              <td style="font-size:var(--font-size-20)"><a href="#">Nữ</a></td>
-              <td><i class="fas fa-edit mr-2 edit__color" title="cập nhật danh mục"></i> <i class="fas fa-backspace delete__color" title="xóa danh mục"></i></td>
-            </tr>
-            <tr>
-              <td scope="row">3</td>
-              <td style="font-size:var(--font-size-20)"><a href="#">Giảm giá</a></td>
-              <td><i class="fas fa-edit mr-2 edit__color" title="cập nhật danh mục"></i> <i class="fas fa-backspace delete__color" title="xóa danh mục"></i></td>
-            </tr>
+            @foreach($categories as $key => $item)
+                 <tr>
+                    <td scope="row">{{++$key}}</td>
+                    <td style="font-size:var(--font-size-20)"><a href="#">{{$item -> sub_category_name}}</a></td>
+                    <td> <a href="{{route('admin.getEditCategory',['id' => $item -> id ])}}"><i class="fas fa-edit mr-2 edit__color " title="cập nhật danh mục"></i></a>  <a  href="{{route('admin.deleteCategory',['id'=>$item-> id])}}" class="deleteCategory"><i class="fas fa-backspace delete__color edittext" title="xóa danh mục {{$item -> sub_category_name}}"></i></a></td>
+               </tr>
+            @endforeach
           </tbody>
-    </table>
+        </table>
+        {{$categories -> links()}}
 @endsection
 
 @section('cssForThisPage')

@@ -20,27 +20,7 @@
                 <span style="color:red" >{{$message}}</span>
              @enderror
         </div>
-        <div class="mb-3">
-            <select name="categoryParent" class="form-select" aria-label="Default select example">
-                <option disabled selected>Chọn danh mục cha</option>
-                @if(!empty($categoryParent))
-                    @foreach($categoryParent as $item)
-                         <option value="{{$item -> id}}">{{$item -> category_name}}</option>
-                    @endforeach
-                @endif
-              </select>
-              @error('categoryParent')
-              <span style="color:red" >{{$message}}</span>
-           @enderror
-        </div>
         <button type="submit" class="btn btn-primary">Thêm danh mục</button>
         @csrf
     </form>
 @endsection
-
-<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-
-<script>
-    $.get('http://127.0.0.1:8000/categoryAPI', function(data){
-    })
-</script>

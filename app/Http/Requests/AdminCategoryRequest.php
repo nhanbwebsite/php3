@@ -24,21 +24,23 @@ class AdminCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'category_name' => 'required|min:6'
+            'category_name' => 'required|min:2',
+            'categoryParent'=>'required'
         ];
     }
 
     public function messages(){
         return [
             'category_name.required' => ':attribute không được bỏ trống',
-            'category_name.min' => ':attribute tối thiểu 6 ký tự'
-
+            'category_name.min' => ':attribute tối thiểu 2 ký tự',
+            'categoryParent.required' => ':attribute không được dể trống'
         ];
     }
 
     public function attributes(){
         return [
             'category_name' => 'Tên danh mục',
+            'categoryParent' => 'Danh mục chứa'
         ];
     }
 

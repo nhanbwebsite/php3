@@ -26,3 +26,13 @@ Route::get('/productDetails/{id}',[ProductController::class,'getProductDetails']
 
 Route::get('/productsBysubDetails/{id}',[ProductController::class,'getProductsBySubDetailAPI']);
 
+Route::get('/category/{id}',[ProductController::class,'getProductsBySubDetailAPI']);
+
+Route::get('/productBySubdetails/{id}',[ProductController::class,'getProductsBySubDetail']);
+
+// categories
+Route::get('/categoryAPI',[CategoryAPIController::class,'getAPICetegoryController']);
+// subcategories
+Route::get('subCategoryAPI',[SubCategoryAPIController::class,'getAPISubCetegoryController']);
+// subCategoryDetails
+Route::get('SubCategoryDetailsAPIController',[SubCategoryDetailsAPIController::class,'getAPISubCetegoryDetailsController']);
