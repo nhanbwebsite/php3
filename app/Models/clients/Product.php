@@ -16,10 +16,9 @@ class Product extends Model
             ->get();
             return $data;
         }
-    // 4 sản phẩm mới nhất
+    // 4 sản phẩm mới nhất hiển thị
         public function getProductsLimit(){
             $data = DB::table('products')->join('image_products', 'products.id','=','image_products.id_product')
-            -> join('product_details','product_details.product_id','=','products.id')
             ->orderBy('products.id','desc')
             ->limit(4)
             ->get();
@@ -38,8 +37,6 @@ class Product extends Model
 
         public function getproductDetails($id){
             $data = DB::table('products')
-            ->join('image_products', 'products.id','=','image_products.id_product')
-            -> join('product_details','product_details.product_id','=','products.id')
             ->where('products.id','=',$id) ->get();
             return $data;
         }
@@ -52,4 +49,41 @@ class Product extends Model
            -> where('sub_categogies_details.id_sub_detail','=',$id) -> get();
            return $data;
         }
+
+        public function getProductsSubCategory($id){
+            $data = DB::table('products')
+            ->select('products.*','sub_categories.sub_category_name')
+            -> join('sub_categories','products.id_sub_cate','=','sub_categories.id')
+            -> where('sub_categories.id','=',$id) -> paginate(9);
+            return $data;
+        }
+
+        public static function productsPriceDissCount(){
+            $data = DB::table('products')
+            ->select('*')
+            -> where('product_price_discount','>','0')
+            ->limit(4)
+            ->get();
+            return $data;
+        }
+
+        public static function productsNew(){
+            $data = DB::table('products')
+            ->select('*')
+            ->orderByDesc('products.created_at')
+            ->limit(4)
+            ->get();
+            return $data;
+        }
+
+        public static function AllProducts(){
+            $data = DB::table('products')
+            ->select('*')
+            ->orderByDesc('products.created_at')
+            ->paginate(12);
+            return $data;
+        }
+
+
+
 }

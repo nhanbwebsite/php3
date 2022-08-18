@@ -2,11 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\ProvinceController;
+// home
+use App\Http\Controllers\clients\HomeController;
 
-use App\Http\Controllers\APIDistrictController;
 
-use App\Http\Controllers\APIWardsController;
+
+
 
 use App\Http\Controllers\admin\CategoryController;
 
@@ -20,13 +21,17 @@ use App\Http\Controllers\admin\OrderController;
 use App\Http\Controllers\admin\UserController;
 // comment controller
 use App\Http\Controllers\admin\CommentController;
-
+// login
+use App\Http\Controllers\admin\LoginController;
 // ProductsController ADMIN
 use App\Http\Controllers\admin\ProductController as ProductControllerAmin;
  use App\Http\Controllers\admin\CategoryAPIController;
  use  App\Http\Controllers\admin\SubCategoryAPIController;
 use App\Http\Controllers\admin\SubCategoryDetailsAPIController;
-
+// register
+use App\Http\Controllers\admin\RegisterController;
+// size admin
+use App\Http\Controllers\admin\SizeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,13 +47,13 @@ use App\Http\Controllers\admin\SubCategoryDetailsAPIController;
 
 // End API
 // clients
-Route::get('/', function () {
-    return view('clients.home');
-}) -> name('client.home');
+Route::get('/', [HomeController::class,'index']) -> name('client.home');
 
 
 Route::get('/product_details/{id}',[ProductController::class,'productDetails'])->name('proDetail');
-Route::get('productsByCategoryDetails/{id}',[ProductController::class,'getProductsBySubDetailClients'])->name('subDetails');
+Route::post('product_details/{id}',[ProductController::class,'addCart']);
+Route::get('productsByCategoryDetails/{id}',[ProductController::class,'getProductsBySubDetailClients'])->name('clients.productsByCategoryDetails');
+Route::get('/allProducts',[ProductController::class,'getAllproducts'])->name('clients.allProducts');
 
 Route::get('/cartEmpty', function () {
     return view('clients.cartEmpty');
@@ -58,33 +63,29 @@ Route::get('/cart', function () {
     return view('clients.cart');
 }) -> name('client.cart') ;
 
-Route::get('/productsByCategory', function () {
-    return view('clients.productsByCategory');
-}) -> name('client.products') ;
+Route::get('/productsByCategory/{id}',[ProductController::class,"getProductsBySubCate"]) -> name('client.productsByCategory') ;
 
 
 Route::get('/checkoutInfomation', function () {
     return view('clients.checkoutInfomation');
 });
 
-Route::get('/login', function () {
-    return view('clients.login');
-}) -> name('client.login');
+Route::get('/logout',[LoginController::class,'logout'])->name('logout');
 
-Route::get('/register', function () {
-    return view('clients.register');
-}) -> name('client.register');
+Route::get('/login',[LoginController::class,'loginGet']) -> name('client.login');
+Route::post('/login',[LoginController::class,'loginPost']) -> name('client.login');
+
+Route::get('/register',[RegisterController::class,'registerGet']) -> name('client.register');
+Route::post('/register',[RegisterController::class,'registerPost']) -> name('client.register');
 
 Route::get('/news', function () {
     return view('clients.news');
 }) -> name('client.news');
 
-Route::get('/allProducts', function () {
-    return view('clients.products');
-}) -> name('client.products');
+
 // end clients
 // Route admin
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware('admin.checkLoginAdmin')->group(function () {
             // Danh mục sản phẩm
     Route::prefix('categories')->group(function (){
         // Thêm mới danh mục
@@ -111,6 +112,21 @@ Route::prefix('admin')->group(function () {
         Route::get('/delete/{id}',[ProductControllerAmin::class,'handleDelete'])->name('amin.products.delete');
 
     });
+    // Size
+
+    Route::prefix('size')->group(function (){
+        // Thêm mới danh mục
+        Route::get('/',[SizeController::class,'getAll'])->name('admin.size.list');
+        Route::get('/addGet',[SizeController::class,'addGet'])->name('amin.size.addGet');
+        Route::post('/addGet',[SizeController::class,'addPost']);
+        Route::get('/getUpdatesize/{id}',[SizeController::class,'getUpdatesize'])->name('amin.size.updateGet');
+        Route::post('/getUpdatesize/{id}',[SizeController::class,'handleUpdate'])->name('amin.size.updatePost');
+        Route::get('/delete/{id}',[SizeController::class,'handleDelete'])->name('admin.size.delete');
+
+    });
+
+    // end size
+
     Route::prefix('post')->group(function (){
         // Bài viết
         Route::get('/',[PostController::class,'index'])->name('amin.post.list');
@@ -121,7 +137,10 @@ Route::prefix('admin')->group(function () {
         // Bài viết
         Route::get('/',[UserController::class,'index'])->name('amin.user.list');
         Route::get('/add',[UserController::class,'addGet'])->name('amin.user.addGet');
-        Route::post('/add',[UserController::class,'addGet'])->name('amin.user.addGet');
+        Route::post('/add',[UserController::class,'addPost'])->name('amin.user.addPost');
+        Route::get('/update/{id}',[UserController::class,'updateUser'])->name('amin.user.updateGet');
+        Route::post('/update/{id}',[UserController::class,'handelUpdate'])->name('amin.user.updatePost');
+        Route::get('/delete/{id}',[UserController::class,'deleteUser'])->name('amin.user.delete');
 
     });
     Route::prefix('order')->group(function (){
@@ -135,34 +154,6 @@ Route::prefix('admin')->group(function () {
 
 });
 
-
-
-
-
-//  route lab
-
-
-
-
-// end route lab
-
-
-
-
-
-// test
-
-Route::get('/provinceAPI', [ProvinceController::class,'getprovince'])->name('provinceAPI');
-Route::get('/province',function(){
-    return view('clients.test');
-});
-
-// District
-
-Route::get('/districtAPI', [APIDistrictController::class,'getDistrictAPI'])->name('districtAPI');
-Route::get('/wardsAPI', [APIWardsController::class,'getWardsAPI'])->name('getWardsAPI');
-
-// test products
 
 
 

@@ -50,4 +50,5 @@ class AdminModelCategory extends Model
         'sub_category_name',
     ];
 
+
 }

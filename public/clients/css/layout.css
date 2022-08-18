@@ -409,7 +409,10 @@ html {
     color: var(--white);
     font-weight: 600;
 }
-
+.cart__item_cartLoadA{
+    height: 100vh;
+    overflow: auto;
+}
 .footer p{
     font-size:1.6rem;
     font-weight:600;
@@ -500,3 +503,41 @@ width: 20rem;
 }
 
 /* End footer */
+
+
+#dropdownMenuButton1{
+    background: transparent;
+    color: black;
+    outline: none !important;
+    border: none;
+    font-size: 16px;
+}
+#dropdownMenuButton1:active{
+    background: transparent;
+    color: black;
+    outline: none !important;
+    border: none;
+    font-size: 16px;
+}
+
+#dropdownMenuButton1:visited{
+    background: transparent;
+    color: black;
+    outline: none !important;
+    border: none;
+    font-size: 16px;
+}
+
+.dropdown-item{
+    color:black !important;
+    background: transparent;
+}
+
+.dropdown-menu a{
+    color:black !important;
+}
+
+.sidebar a{
+color:black !important;
+}
+

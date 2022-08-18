@@ -5,62 +5,54 @@
 
 @section('content')
     <h2>Danh sách người dùng</h2>
+    @if(Session::has('updateSucess'))
+    <x-alert type="success" value="{{Session::get('updateSucess')}}" />
+    @endif
+    @if(Session::has('deleteSuccess'))
+    <x-alert type="success" value="{{Session::get('deleteSuccess')}}" />
+    @endif
+    @if(Session::has('addSuccess'))
+    <x-alert type="success" value="{{Session::get('addSuccess')}}" />
+    @endif
     <table class="table">
         <thead>
           <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Tên tài khoản</th>
-            <th scope="col">Vai trò</th>
-            <th scope="col">Hình</th>
+            <th scope="col">Tên khách hàng</th>
+            <th scope="col">Email</th>
+            <th scope="col">Điện thoại</th>
             <th scope="col text-center">Địa chỉ</th>
-            <th scope="col text-center">Trạng thái</th>
-
+            <th scope="col">Vai trò</th>
             <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th style="vertical-align:middle" scope="row">1</th>
-            <td style="vertical-align:middle"><a href="#">nhanbpc01368</a></td>
-            <td style="vertical-align:middle">Root</td>
-            <td style="vertical-align:middle"><img style="width:70px" src="{{asset('clients/images/user/1.png')}}" alt=""></td>
-            <td style="vertical-align:middle"> Long Mỹ - Hậu Giang</td>
-            <td style="vertical-align:middle">
-                <select style="width:150px" class="form-select" aria-label="Default select example">
-                    <option selected>Đã kích hoạt</option>
-                    <option >Ẩn</option>
-                  </select>
-            </td>
-            <td style="vertical-align:middle"><i title="cập nhật sản phẩm" class="fas fa-edit mr-2 edit__color"></i> <i class="fas fa-backspace delete__color" title="xóa sản phẩm"></i></td>
-          </tr>
-          <tr>
-            <th style="vertical-align:middle" scope="row">2</th>
-            <td style="vertical-align:middle"><a href="#">admin1</a></td>
-            <td style="vertical-align:middle"> Admin</td>
-            <td style="vertical-align:middle"><img style="width:70px" src="{{asset('clients/images/user/1.png')}}" alt=""></td>
-            <td style="vertical-align:middle"> 195 - Nguyễn Tri Phương</td>
-            <td style="vertical-align:middle">
-                <select style="width:150px" class="form-select" aria-label="Default select example">
-                    <option selected>Chưa kích hoạt</option>
-                    <option >Ẩn</option>
-                  </select>
-            </td>
-            <td style="vertical-align:middle"><i title="cập nhật sản phẩm" class="fas fa-edit mr-2 edit__color"></i> <i class="fas fa-backspace delete__color" title="xóa sản phẩm"></i></td>
-          </tr>
-          <tr>
-            <th style="vertical-align:middle" scope="row">3</th>
-            <td style="vertical-align:middle"><a href="#">Client_1</a></td>
-            <td style="vertical-align:middle"> Khách hàng</td>
-            <td style="vertical-align:middle"><img style="width:70px" src="{{asset('clients/images/user/1.png')}}" alt=""></td>
-            <td style="vertical-align:middle"> 195 - Trần Hoàng Na</td>
-            <td style="vertical-align:middle">
-                <select style="width:150px" class="form-select" aria-label="Default select example">
-                    <option selected>Đã kích hoạt</option>
-                    <option >Ẩn</option>
-                  </select>
-            </td>
-            <td style="vertical-align:middle"><i title="cập nhật sản phẩm" class="fas fa-edit mr-2 edit__color"></i> <i class="fas fa-backspace delete__color" title="xóa sản phẩm"></i></td>
-          </tr>
+            @forelse($listUser as $key => $item)
+                <tr>
+                    <td style="vertical-align:middle"><a href="#">{{$item->fullname}}</a></td>
+                    <td style="vertical-align:middle"><a href="#">{{$item->email}}</a></td>
+                    <td style="vertical-align:middle">{{$item->phone}}</td>
+                    <td style="vertical-align:middle"> {{$item->address}}</td>
+                    <td style="vertical-align:middle">
+                        @if($item->role == 0)
+                            {{'Root'}}
+                        @elseif($item->role == 1)
+                        {{'Admin'}}
+                        @else
+                        {{'Khách hàng'}}
+                        @endif
+                    </td>
+                    <td style="vertical-align:middle">
+                        @if($item->role == 0)
+                        ========
+                        @elseif($item->role==1 || $item->role==2)
+                        <a href="{{route('amin.user.updateGet',['id'=>$item->id])}}"><i title="cập nhật sản phẩm" class="fas fa-edit mr-2 edit__color"></i></a>
+                        <a href="{{route('amin.user.delete',['id'=>$item->id])}}" class="linkDeleteUser"> <i class="fas fa-backspace delete__color" title="xóa user {{$item->email}}"></i></a>
+                    </td>
+                    @endif
+                </tr>
+            @empty
+            <h3>Danh sách user trống</h3>
+            @endforelse
         </tbody>
       </table>
 @endsection
@@ -72,5 +64,5 @@
 @endsection
 {{-- js for this page --}}
 @section('jsForThisPage')
-    {{asset('admin/js/products/listProducts.js')}}"
+    {{asset('admin/js/user/list.js')}}"
 @endsection

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\AdminproductRequest;
 use App\Models\admin\AdminProductModel;
 use App\Models\admin\AdminModelCategory;
+use App\Models\admin\SizeModel;
 
 class ProductController extends Controller
 {
@@ -21,7 +22,13 @@ class ProductController extends Controller
         return view('admin.products.listProducts',$this->data);
     }
     public function addGet(){
-        return view('admin.products.AddProducts');
+        $Size = new SizeModel();
+        $Cate = new AdminModelCategory();
+        $this->data['dataListCate'] = $Cate->all();
+
+        $this->data['listSize'] =  $Size->all();
+
+        return view('admin.products.AddProducts',$this->data);
     }
 
     public function addPost(AdminproductRequest $res){
@@ -88,7 +95,6 @@ class ProductController extends Controller
         $proModel->product_price_discount  = $res->product_price_discount;
 
         if ($res->has('product_img')) {
-
             $proModel->product_img = $res->product_img;
             $file = $res->product_img;
             if(strlen($file -> getClientOriginalName()) > 0){

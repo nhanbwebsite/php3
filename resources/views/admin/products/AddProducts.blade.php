@@ -35,44 +35,32 @@
               <label for="" class="form-label">Giá khuyến mãi (%)<span style="color:red" >*</span></label>
               <input type="number" min="0" max="100" class="form-control" id="" name="product_price_discount" value="{{old('product_price_discount')}}" placeholder="Nhập giá khuyến mãi sản phảm theo %, VD: 5">
               @error('product_price')
-              <span style="color:red" >{{$message}}</span>
+                <span style="color:red" >{{$message}}</span>
               @enderror
             </div>
             <div class="mb-3">
               <label for="" class="form-label">Số lượng sản phẩm (lớn hơn hoặc = 0)<span style="color:red" >*</span></label>
-              <input type="number" min="0" class="form-control" id="" name="product_quantity" value="{{old('product_quantity')}}" placeholder="Nhập giá sản phẩm">
+               <input type="number" min="0" class="form-control" id="" name="product_quantity" value="{{old('product_quantity')}}" placeholder="Nhập giá sản phẩm">
               @error('product_quantity')
-              <span style="color:red" >{{$message}}</span>
+               <span style="color:red" >{{$message}}</span>
               @enderror
             </div>
             <div class="mb-3">
               <label for="" class="form-label">size: <span style="color:red" >*</span></label>
               <div class="box__size">
-                <div class="form-check">
-                    <input class="form-check-input" name="product_size[]" type="checkbox" value="M" id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        M
-                    </label>
-                  </div>
-                <div class="form-check">
-                    <input class="form-check-input"  name="product_size[]" type="checkbox" value="L" id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                      L
-                    </label>
-                  </div>
-                <div class="form-check">
-                    <input class="form-check-input"  name="product_size[]" type="checkbox" value="XL" id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                      XL
-                    </label>
-                  </div>
-                <div class="form-check">
-                    <input class="form-check-input"  name="product_size[]" type="checkbox" value="XXL" id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                      XXL
-                    </label>
-                  </div>
-              </div>
+                @forelse($listSize as $itemSize)
+                    <div class="form-check">
+                        <input class="form-check-input" name="product_size[]" type="checkbox" value="{{$itemSize->size}}">
+                        <label class="form-check-label" for="flexCheckDefault">
+                           {{$itemSize->size}}
+                        </label>
+                    </div>
+                    @empty
+                    <h4>Không có size, vui lòng thêm size trước khi thêm sản phẩm</h4>
+                @endforelse
+
+
+
               @error('product_size')
               <span style="color:red" >{{$message}}</span>
               @enderror
@@ -93,41 +81,49 @@
                 @enderror
             </div>
         </div>
+        <div class="mb-3">
+            <label for="" class="form-label">Danh mục sản phẩm<span style="color:red" >*</span></label>
+            <select class="form-select" name="id_sub_cate" aria-label="Default select example">
 
-        <div class="col-3">
-            <div class="mb-3">
-                <label for="" class="form-label">Danh mục sản phẩm<span style="color:red" >*</span></label>
-                <select class="form-select" name="id_sub_cate" aria-label="Default select example">
-                    <option value="1" selected>Áo Polo Nam</option>
-                  </select>
-                @error('product_desc')
-                <span style="color:red" >{{$message}}</span>
-                @enderror
-            </div>
-            <div class="mb-3">
-                <label for="" class="form-label">Trạng thái<span style="color:red" >*</span></label>
-                <select class="form-select" name="status" aria-label="Default select example">
-                    <option value="1" selected>Hiển thị</option>
-                    <option value="0">Ẩn</option>
-                  </select>
-                @error('product_status')
-                <span style="color:red" >{{$message}}</span>
-                @enderror
-            </div>
-            <div class="mb-3">
-                <label for="" class="form-label">Hình:<span style="color:red" >*</span></label>
-                <div class="input-group mb-3">
-                    <input type="file" name="product_img" class="form-control" title=" " id="inputGroupFile02">
-                    {{-- <label class="input-group-text" title = " " for="inputGroupFile02">Upload</label> --}}
-                  </div>
-                @error('product_img')
-                <span style="color:red" >{{$message}}</span>
-                @enderror
-            </div>
-            <div class="mb-3">
-              <img width="100%" src="" id="box_img_watch" alt="">
-            </div>
+                @forelse($dataListCate as $item)
+                     <option value="{{$item->id}}">{{$item->sub_category_name}}</option>
+                @empty
+                <h4>Không có danh mục, vui lòng thêm danh mục trước khi thêm sản phẩm</h4>
+
+                @endforelse
+              </select>
+            @error('product_desc')
+            <span style="color:red" >{{$message}}</span>
+            @enderror
         </div>
+
+
+    </div>
+    <div class="col-3">
+        <div class="mb-3">
+            <label for="" class="form-label">Trạng thái<span style="color:red" >*</span></label>
+            <select class="form-select" name="status" aria-label="Default select example">
+                <option value="1" selected>Hiển thị</option>
+                <option value="0">Ẩn</option>
+              </select>
+            @error('product_status')
+            <span style="color:red" >{{$message}}</span>
+            @enderror
+        </div>
+        <div class="mb-3">
+            <label for="" class="form-label">Hình:<span style="color:red" >*</span></label>
+            <div class="input-group mb-3">
+                <input type="file" name="product_img" class="form-control" title=" " id="inputGroupFile02">
+                {{-- <label class="input-group-text" title = " " for="inputGroupFile02">Upload</label> --}}
+              </div>
+            @error('product_img')
+            <span style="color:red" >{{$message}}</span>
+            @enderror
+        </div>
+        <div class="mb-3">
+          <img width="100%" src="" id="box_img_watch" alt="">
+        </div>
+    </div>
     </div>
     <button type="submit" class="btn btn-primary">Thêm</button>
     @csrf

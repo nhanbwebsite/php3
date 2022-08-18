@@ -121,7 +121,7 @@ body {
   }
 
   #signup .inputs input[type="email"],
-  input[type="password"] {
+  input[type="password"], input[type="text"] {
     background: #f3f3f3;
     font-size: 0.8rem;
     -moz-border-radius: 3px;

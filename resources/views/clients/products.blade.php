@@ -9,90 +9,31 @@
 @section('content')
 <div class="row box__pd mb-5">
     {{-- <h2 class="title__header-textProduct">Sản phẩm giảm giá</h2> --}}
+
+    @foreach($allProducts as $item)
     <div class="col-12 col-md-6 col-lg-3 product__box-col">
         <div class="product__box-col-img">
-            <a class="product__box-col-img-link" href="#"><img src="{{asset('clients/images/products/Father_s_Day_mockupfott.jpg')}}" alt=""></a>
-            <a href="#" class="product__box-col-img-hover" ></a>
-           <div class="product__box-quickviews">
-            <i class="fa-solid fa-magnifying-glass" title="Xem nhanh sản phẩm" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i>
-           </div>
-           <div class="item_seller">
-            <img class="" src="{{asset('clients/images/seller/seller2.png')}}" alt="">
-           </div>
+            <a class="product__box-col-img-link" href="#"><img src="{{asset('clients/images/products/')}}/{{$item->product_img}}" alt="{{$item->product_img}}"></a>
+            <a href="{{route('proDetail',['id'=>$item->id])}}" class="product__box-col-img-hover" ></a>
+        <div class="product__box-quickviews">
+            {{-- <i class="fa-solid fa-magnifying-glass" onclick="quickView(${item.id})" title="Xem nhanh sản phẩm" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i> --}}
+            <a href="{{route('proDetail',['id'=>$item->id])}}" class="fa-solid fa-magnifying-glass"  title="Xem nhanh sản phẩm"  data-bs-target="#staticBackdrop"></a>
+        </div>
+        <div class="item_New">
+            <img class="" src="{{asset('clients/images/seller/new.png')}}" alt="seller">
+        </div>
         </div>
         <div class="product__box-col-text">
             <div class="product__box-col-text-title">
-                Tên sản phẩm
+                {{$item->product_name}}
             </div>
             <div class="product__box-col-text-price">
-                <del class="product__box-col-text-price-del">450.000 ₫</del>
-                <span class="product__box-col-text-price-now">380.000 ₫</span>
+                <del class="product__box-col-text-price-del">{{$item->product_price_discount > 0 ? number_format($item->product_price)  . '₫' : '' }} </del>
+                <span class="product__box-col-text-price-now">{{$item->product_price_discount > 0 ? number_format($item->product_price - ($item->product_price_discount * $item->product_price)/100): number_format($item->product_price)}} ₫</span>
             </div>
         </div>
     </div>
-    <div class="col-12 col-md-6 col-lg-3 product__box-col">
-        <div class="product__box-col-img">
-            <a class="product__box-col-img-link" href="#"><img src="{{asset('clients/images/products/Father_s_Day_mockupfott.jpg')}}" alt=""></a>
-            <a href="#" class="product__box-col-img-hover" ></a>
-           <div class="product__box-quickviews">
-            <i class="fa-solid fa-magnifying-glass" title="Xem nhanh sản phẩm" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i>
-           </div>
-           <div class="item_seller">
-            <img class="" src="{{asset('clients/images/seller/seller2.png')}}" alt="">
-           </div>
-        </div>
-        <div class="product__box-col-text">
-            <div class="product__box-col-text-title">
-                Tên sản phẩm
-            </div>
-            <div class="product__box-col-text-price">
-                <del class="product__box-col-text-price-del">450.000 ₫</del>
-                <span class="product__box-col-text-price-now">380.000 ₫</span>
-            </div>
-        </div>
-    </div>
-    <div class="col-12 col-md-6 col-lg-3 product__box-col">
-        <div class="product__box-col-img">
-            <a class="product__box-col-img-link" href="#"><img src="{{asset('clients/images/products/Father_s_Day_mockupfott.jpg')}}" alt=""></a>
-            <a href="#" class="product__box-col-img-hover" ></a>
-           <div class="product__box-quickviews">
-            <i class="fa-solid fa-magnifying-glass" title="Xem nhanh sản phẩm" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i>
-           </div>
-           <div class="item_seller">
-            <img class="" src="{{asset('clients/images/seller/seller2.png')}}" alt="">
-           </div>
-        </div>
-        <div class="product__box-col-text">
-            <div class="product__box-col-text-title">
-                Tên sản phẩm
-            </div>
-            <div class="product__box-col-text-price">
-                <del class="product__box-col-text-price-del">450.000 ₫</del>
-                <span class="product__box-col-text-price-now">380.000 ₫</span>
-            </div>
-        </div>
-    </div>
-    <div class="col-12 col-md-6 col-lg-3 product__box-col">
-        <div class="product__box-col-img">
-            <a class="product__box-col-img-link" href="#"><img src="{{asset('clients/images/products/Father_s_Day_mockupfott.jpg')}}" alt=""></a>
-            <a href="#" class="product__box-col-img-hover" ></a>
-           <div class="product__box-quickviews">
-            <i class="fa-solid fa-magnifying-glass" title="Xem nhanh sản phẩm" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i>
-           </div>
-           <div class="item_seller">
-            <img class="" src="{{asset('clients/images/seller/seller2.png')}}" alt="">
-           </div>
-        </div>
-        <div class="product__box-col-text">
-            <div class="product__box-col-text-title">
-                Tên sản phẩm
-            </div>
-            <div class="product__box-col-text-price">
-                <del class="product__box-col-text-price-del">450.000 ₫</del>
-                <span class="product__box-col-text-price-now">380.000 ₫</span>
-            </div>
-        </div>
-    </div>
+    @endforeach
 
 </div>
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -102,8 +43,6 @@
           <i class="fa-solid fa-circle-xmark close__modal" data-bs-dismiss="modal" aria-label="Close"></i>
         </div>
         <div class="modal-body">
-
-
           <div class="box__product-detail m-0">
 
               <div class="row box__product-responsive">
@@ -140,7 +79,6 @@
                                <p>Chất liệu: COTTON DOUBLE FACE</p>
                                <p>- Vải sợi Cotton được dệt theo "DOUBLE-FACE" có cấu trúc 2 bề mặt giống nhau, có thể sử dụng được cả 2 mặt vải</p>
                                <p> - Thành phần: 87% Cotton 13% Polyester</p>
-
                            </div>
                       </div>
                       <div class="box__product-detail-size">

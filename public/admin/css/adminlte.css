@@ -14146,3 +14146,7 @@ html.control-sidebar-animate {
 }
 
 /*# sourceMappingURL=adminlte.css.map */
+
+.btn-secondary.dropdown-toggle, .dropdown-menu{
+    width: 100% !important;
+}

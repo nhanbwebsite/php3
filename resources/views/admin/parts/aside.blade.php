@@ -1,5 +1,5 @@
   {{-- Brand Logo --}}
-  <a href="#" class="brand-link">
+  <a href="/" class="brand-link">
     <img src="{{asset('admin/images/AdminLTELogo.png')}}"fhome
          alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
     <span class="brand-text font-weight-light">Quản trị admin</span>
@@ -7,15 +7,33 @@
 
   {{-- Sidebar --}}
   <div class="sidebar">
+    <div class="dropdown mt-2">
+
+            <button class="d-block btn btn-secondary dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                @if(Session::has('user'))
+                    {{Session::get('user')['fullname']}}
+                @endif
+            </button>
+
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" style="color:black" href="{{route('amin.user.updateGet',['id' => Session::get('user')['id']])}}">Cập nhật tài khoản</a></li>
+          <li><a class="dropdown-item" style="color:black" href="{{route('client.home')}}">Giao diện khách hàng</a></li>
+          <li><a class="dropdown-item" style="color:black" href="{{route('logout')}}">Đăng xuất</a></li>
+        </ul>
+      </div>
     {{-- Sidebar user panel (optional) --}}
-    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+    {{-- <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
         <img  src="{{asset('admin/images/user__admin.png')}}" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-        <a href="#" class="d-block">Nguyễn Bá Nha</a>
+
+
+
+
       </div>
-    </div>
+
+    </div> --}}
 
     {{-- SidebarSearch Form --}}
     <div class="form-inline">
@@ -31,12 +49,7 @@
 
     {{-- Sidebar Menu --}}
     <nav class="mt-2">
-      <ul
-        class="nav nav-pills nav-sidebar flex-column"
-        data-widget="treeview"
-        role="menu"
-        data-accordion="false"
-      >
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         {{-- Add icons to the links using the .nav-icon class
          with font-awesome or any other icon font library --}}
          <li class="nav-item">
@@ -87,7 +100,30 @@
             </li>
           </ul>
         </li>
-
+{{-- Size --}}
+    <li class="nav-item">
+        <a href=# class="nav-link">
+        <i class="fas fa-list-alt"></i>
+        <p>
+            Size
+            <i class="right fas fa-angle-left"></i>
+        </p>
+        </a>
+        <ul class="nav nav-treeview">
+        <li class="nav-item">
+            <a href="{{route('admin.size.list')}}" class="nav-link">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Danh sách size</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{route('amin.size.addGet')}}" class="nav-link">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Thêm size</p>
+            </a>
+        </li>
+        </ul>
+    </li>
     {{-- Post --}}
         <li class="nav-item">
             <a href=# class="nav-link">
@@ -175,8 +211,9 @@
     </li>
     </ul>
 </li>
-
+      </ul>
     {{-- /.sidebar-menu --}}
   </div>
   {{-- /.sidebar --}}
 
+</nav>

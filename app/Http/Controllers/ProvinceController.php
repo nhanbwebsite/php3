@@ -14,8 +14,9 @@ class ProvinceController extends Controller
     }
     public function getprovince(){
         $data =   $this -> province->getProvinces();
-        return $data;
-
+        return response() ->json([
+            'data' => $data
+        ]);
     }
 }
 

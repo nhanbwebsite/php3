@@ -19,7 +19,7 @@
                 <ul class="menu__child-list font-normal">
                   @foreach($cateSubList as $item)
                   <li class = "menu__child-list-item">
-                    <a href="#" class="menu__child-list-link" >{{$item->sub_category_name}}</a>
+                    <a href="{{route('client.productsByCategory',['id' => $item->id])}}" class="menu__child-list-link" >{{$item->sub_category_name}}</a>
                 </li>
                   @endforeach
                 </ul>
@@ -31,7 +31,7 @@
                <ul class="menu__child-list font-normal">
                 @foreach($cateSubGList as $item)
                   <li class = "menu__child-list-item">
-                    <a href="#" class="menu__child-list-link" >{{$item->sub_category_name}}</a>
+                    <a href="{{route('client.productsByCategory',['id' => $item->id])}}" class="menu__child-list-link" >{{$item->sub_category_name}}</a>
                 </li>
                   @endforeach
                </ul>
@@ -53,8 +53,27 @@
        {{-- <li class="menu__item bold">
            <a href="#">Trợ giúp</a>
        </li> --}}
+
        <li class="menu__item bold">
-           <a href="{{route('client.login')}}">Đăng nhập</a>
+            @if(Session::has('user'))
+                <span class="d-block btn btn-secondary dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    @if(Session::has('user'))
+                        {{Session::get('user')['fullname']}}
+                    @endif
+                </span>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" style="font-size:14px" href="{{route('amin.user.updateGet',['id' => Session::get('user')['id']])}}">Cập nhật tài khoản</a></li>
+                    <span hidden id="u_id">{{Session::get('user')['id']}}</span>
+                    @if(Session::has('user'))
+                        @if(Session::get('user')['role']== 0 ||Session::get('user')['role']== 1 )
+                            <li><a class="dropdown-item" style="font-size:14px" href="{{route('amin.products.list')}}">Khu vực quản trị</a></li>
+                        @endif
+                    @endif
+                    <li><a class="dropdown-item" style="font-size:14px" href="{{route('logout')}}">Đăng xuất</a></li>
+                  </ul>
+                @else
+                <a href="{{route('client.login')}}">Đăng nhập</a>
+            @endif
        </li>
        <li class="menu__item bold">
            <span class="cart__text">Giỏ hàng (0)</span>
@@ -246,142 +265,53 @@
            </div>
             <div class="cart__amount-total">
                 <span>0 sản phẩm</span>
-                <span class="cart__Float-total">Tạm tính: 2.850.000 ₫</span>
+                <span class="cart__Float-total"></span>
             </div>
        </div>
-       <div class="box__products-cart mt-5">
-        <div class="row">
-            <div class="col-3">
-               <img src="{{asset('clients/images/products/Father_s_Day_mockupfott.jpg')}}" alt="">
-            </div>
-            <div class="col-9">
-               <div class="box__products-title-cartFloat">
-                <a href="#"> Áo thun nam tay ngắn - 10S22POL38</a>
-                <i class="fa-solid fa-xmark delete__product-cartFloat"></i>
-               </div>
-               <p>Size: L</p>
-               <p> 570.000 ₫</p>
-               <div class="box__input-among-cart">
+       <div class="cart__item_cartLoadA">
 
-                <div class="box_product-detail-amount">
-                    <div class="amount__value">
-
-                     <div class="box__amount">
-                         <div class="subtraction">-</div>
-                         <input type="number" value= "1" class="box__amount-inputValue">
-                         <div class="summation">+</div>
-                     </div>
-                    </div>
-                     {{-- btn buy product --}}
-                   {{-- <form class="form_buy">
-                     <x-button type="button" class="box__button-buy" value="Thêm vào giỏ hàng"/>
-                   </form> --}}
+           {{-- <div class="box__products-cart mt-5">
+            <div class="row">
+                <div class="col-3">
+                   <img src="{{asset('clients/images/products/Father_s_Day_mockupfott.jpg')}}" alt="">
                 </div>
-
-               </div>
-            </div>
-        </div>
-       </div>
-       <div class="box__products-cart mt-5">
-        <div class="row">
-            <div class="col-3">
-               <img src="{{asset('clients/images/products/Father_s_Day_mockupfott.jpg')}}" alt="">
-            </div>
-            <div class="col-9">
-               <div class="box__products-title-cartFloat">
-                <a href="#"> Áo thun nam tay ngắn - 10S22POL38</a>
-                <i class="fa-solid fa-xmark delete__product-cartFloat"></i>
-               </div>
-               <p>Size: L</p>
-               <p> 570.000 ₫</p>
-               <div class="box__input-among-cart">
-                <div class="amount__value">
-
-                    <div class="box__amount">
-                        <div class="subtraction">-</div>
-                        <input type="number" value= "1" class="box__amount-inputValue">
-                        <div class="summation">+</div>
-                    </div>
+                <div class="col-9">
+                   <div class="box__products-title-cartFloat">
+                    <a href="#"> Áo thun nam tay ngắn - 10S22POL38</a>
+                    <i class="fa-solid fa-xmark delete__product-cartFloat"></i>
                    </div>
-                    {{-- btn buy product --}}
-                  {{-- <form class="form_buy">
-                    <x-button type="button" class="box__button-buy" value="Thêm vào giỏ hàng"/>
-                  </form> --}}
-               </div>
-            </div>
-        </div>
-       </div>
+                   <p>Size: L</p>
+                   <p> 570.000 ₫</p>
+                   <div class="box__input-among-cart">
 
-       <div class="box__products-cart mt-5">
-        <div class="row">
-            <div class="col-3">
-               <img src="{{asset('clients/images/products/Father_s_Day_mockupfott.jpg')}}" alt="">
-            </div>
-            <div class="col-9">
-               <div class="box__products-title-cartFloat">
-                <a href="#"> Áo thun nam tay ngắn - 10S22POL38</a>
-                <i class="fa-solid fa-xmark delete__product-cartFloat"></i>
-               </div>
-               <p>Size: L</p>
-               <p> 570.000 ₫</p>
-               <div class="box__input-among-cart">
-                <div class="amount__value">
+                    <div class="box_product-detail-amount">
+                        <div class="amount__value">
 
-                    <div class="box__amount">
-                        <div class="subtraction">-</div>
-                        <input type="number" value= "1" class="box__amount-inputValue">
-                        <div class="summation">+</div>
+                         <div class="box__amount">
+                             <div class="subtraction">-</div>
+                             <input type="number" value= "1" class="box__amount-inputValue">
+                             <div class="summation">+</div>
+                         </div>
+                        </div>
+
                     </div>
+
                    </div>
-                    {{-- btn buy product --}}
-                  {{-- <form class="form_buy">
-                    <x-button type="button" class="box__button-buy" value="Thêm vào giỏ hàng"/>
-                  </form> --}}
-               </div>
+                </div>
             </div>
-        </div>
+           </div> --}}
+
        </div>
-       <div class="box__products-cart mt-5">
-        <div class="row">
-            <div class="col-3">
-               <img src="{{asset('clients/images/products/Father_s_Day_mockupfott.jpg')}}" alt="">
-            </div>
-            <div class="col-9">
-               <div class="box__products-title-cartFloat">
-                <a href="#" > Áo thun nam tay ngắn - 10S22POL38</a>
-                <i class="fa-solid fa-xmark delete__product-cartFloat"></i>
-               </div>
-               <p>Size: L</p>
-               <p> 570.000 ₫</p>
-               <div class="box__input-among-cart">
-                <input class="number__cart-float" value="1" min="1" type="number">
-               </div>
-            </div>
-        </div>
-       </div>
-       <div class="box__products-cart mt-5">
-        <div class="row">
-            <div class="col-3">
-               <img src="{{asset('clients/images/products/Father_s_Day_mockupfott.jpg')}}" alt="">
-            </div>
-            <div class="col-9">
-               <div class="box__products-title-cartFloat">
-                <a href="#"> Áo thun nam tay ngắn - 10S22POL38</a>
-                <i class="fa-solid fa-xmark delete__product-cartFloat"></i>
-               </div>
-               <p>Size: L</p>
-               <p> 570.000 ₫</p>
-               <div class="box__input-among-cart">
-                <input class="number__cart-float" value="1" min="1" type="number">
-               </div>
-            </div>
-        </div>
-       </div>
+
 
        <div class="box__button-cartFloat mt-3">
 
-                <x-button type="button" class="box__button-buy" value="Thanh toán ngay"/>
-                <x-button type="button" class="box__button-buy" value="Xem chi tiết giỏ hàng"/>
+                <form action="/checkoutInfomation">
+                    <x-button type="submit" class="box__button-buy" value="Thanh toán ngay"/>
+                </form>
+                <form action="/cart">
+                    <x-button type="submit" class="box__button-buy" value="Xem chi tiết giỏ hàng"/>
+                </form>
 
             {{-- <div class="box__button-buy">Thành toán ngay</div> --}}
        </div>

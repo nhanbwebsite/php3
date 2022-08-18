@@ -11,11 +11,39 @@
 {{-- content --}}
 @section('content')
 <div class="row box__pd mb-5">
-    <h2 class="title__header-textProduct"></h2>
-    <div class="row products___">
 
+    @if(!empty($listProBySubCate[0])) <h2 class="title__header-textProduct">
+        {{$listProBySubCate[0]->sub_category_name }}
+       </h2> @endif
+    <div class="row products___" style="min-height: 100vh">
 
+    @forelse($listProBySubCate as $item)
+    <div class="col-12 col-md-6 col-lg-3 product__box-col">
+        <div class="product__box-col-img">
+            <a class="product__box-col-img-link" href="#"><img src="{{asset('clients/images/products/')}}/{{$item->product_img}}" alt="{{$item->product_img}}"></a>
+            <a href="{{route('proDetail',['id'=>$item->id])}}" class="product__box-col-img-hover" ></a>
+        <div class="product__box-quickviews">
+            {{-- <i class="fa-solid fa-magnifying-glass" onclick="quickView(${item.id})" title="Xem nhanh sản phẩm" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i> --}}
+            <a href="{{route('proDetail',['id'=>$item->id])}}" class="fa-solid fa-magnifying-glass"  title="Xem nhanh sản phẩm"  data-bs-target="#staticBackdrop"></a>
+        </div>
+        <div class="item_New">
+            <img class="" src="{{asset('clients/images/seller/seller2.png')}}" alt="seller">
+        </div>
+        </div>
+        <div class="product__box-col-text">
+            <div class="product__box-col-text-title">
+                {{$item->product_name}}
+            </div>
+            <div class="product__box-col-text-price">
+                <del class="product__box-col-text-price-del">{{$item->product_price_discount > 0 ? number_format($item->product_price)  . '₫' : '' }} </del>
+                <span class="product__box-col-text-price-now">{{$item->product_price_discount > 0 ? number_format($item->product_price - ($item->product_price_discount * $item->product_price)/100): number_format($item->product_price)}} ₫</span>
+            </div>
+        </div>
     </div>
+    @empty
+    <h2>Không có sản phẩm phù hợp, vui lòng xem lại hoặc liên hệ quản trị viên</h2>
+    @endforelse
+</div>
 
 
 </div>
@@ -40,11 +68,12 @@
 
                        <img src="{{asset('clients/images/products/10s21dpa053_-_mgrey_6__1.jpg')}}" alt="">
                    </div>
+
                    <div class="col-12 col-md-12 col-lg-5 box__product-detail-info">
                        <h3 class="box__product-detail-title" >QUẦN JEAN PHỐI TAPE LƯNG. SLIM - 10S21DPA053</h3>
                        <h4 class="box__product-detail-price" >540.000 ₫</h4>
                        <p class="box__product-detail-code" ><b> MÃ HÀNG HÓA: </b> 10S21DPA053</p>
-                      <div class="box__product-detail-color">
+                      {{-- <div class="box__product-detail-color">
                            <h4 class="box__product-detail-color-text">Màu: </h4>
                            <div class="box__product-detail-color-img">
                                <div class="box__product-detail-color-img-item">
@@ -57,7 +86,7 @@
                                    <img src="{{asset('clients/images/products/10s21dpa053_-_mgrey_6__1.jpg')}}" title="Đen" alt="">
                                </div>
                            </div>
-                      </div>
+                      </div> --}}
                       <div class="box__desction-details">
                            <h3 class="text__title">Mô tả sản phẩm</h3>
                            <div class="text_desction">
@@ -114,6 +143,8 @@
                </div>
 
            </div>
+
+
            </div>
 
 
@@ -125,14 +156,14 @@
       </div>
     </div>
   </div>
-
+{{--
   <script>
-    $.get('http://127.0.0.1:8000/api/productsBysubDetails/{{$id}}', (response) => {
+    $.get('http://127.0.0.1:8000/api/productSubCate/{{$id}}', (response) => {
+        console.log(response);
         let data = response.data;
         let title__header_textProduct = document.querySelector('.title__header-textProduct');
         title__header_textProduct.innerHTML = data[0].sub_detail_name;
         let html = data.map((item) => {
-            console.log(item)
             return `
                 <div class="col-12 col-md-6 col-lg-3 product__box-col">
                     <div class="product__box-col-img">
@@ -161,7 +192,7 @@
 
         products___.innerHTML = html.join('');
     })
-  </script>
+  </script> --}}
 
 @endsection
 

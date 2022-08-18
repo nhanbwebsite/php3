@@ -5,7 +5,7 @@
       @if(!empty($category))
       <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">ID danh mục <span style="color:red" >*</span>  </label>
-          <input readonly type="text" class="form-control" id="category_id" name="sub_category_id" value = "{{$category[0] -> id }}" >
+          <input type="text" class="form-control" id="category_id" name="sub_category_id" value = "{{$category[0] -> id_sub_category }}" >
           @error('category_id')
             <span style="color:red" >{{$message}}</span>
           @enderror
@@ -25,5 +25,3 @@
       @csrf
 </form>
 @endsection
-
-
