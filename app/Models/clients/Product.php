@@ -50,8 +50,6 @@ class Product extends Model
            return $data;
         }
 
-
-
         public function getProductsSubCategory($id){
             $data = DB::table('products')
             ->select('products.*','sub_categories.sub_category_name')

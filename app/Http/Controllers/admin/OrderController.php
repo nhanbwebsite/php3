@@ -12,7 +12,6 @@ class OrderController extends Controller
     public function index(){
         $order = new Order_table_Model();
         $this->data['orderList'] = $order->getUserByOrderUserId();
-
         return view('admin.order.listOrder',$this->data);
     }
 }
