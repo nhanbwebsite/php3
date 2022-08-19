@@ -5,10 +5,6 @@ use Illuminate\Support\Facades\Route;
 // home
 use App\Http\Controllers\clients\HomeController;
 
-
-
-
-
 use App\Http\Controllers\admin\CategoryController;
 
 use App\Http\Controllers\clients\ProductController;
@@ -23,6 +19,8 @@ use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\CommentController;
 // login
 use App\Http\Controllers\admin\LoginController;
+// /order - checkout controller
+use App\Http\Controllers\Order_table_Controller;
 // ProductsController ADMIN
 use App\Http\Controllers\admin\ProductController as ProductControllerAmin;
  use App\Http\Controllers\admin\CategoryAPIController;
@@ -54,6 +52,7 @@ Route::get('/product_details/{id}',[ProductController::class,'productDetails'])-
 Route::post('product_details/{id}',[ProductController::class,'addCart']);
 Route::get('productsByCategoryDetails/{id}',[ProductController::class,'getProductsBySubDetailClients'])->name('clients.productsByCategoryDetails');
 Route::get('/allProducts',[ProductController::class,'getAllproducts'])->name('clients.allProducts');
+Route::get('/search',[ProductController::class,'getProductsForSearch'])->name('clients.search');
 
 Route::get('/cartEmpty', function () {
     return view('clients.cartEmpty');
@@ -65,10 +64,8 @@ Route::get('/cart', function () {
 
 Route::get('/productsByCategory/{id}',[ProductController::class,"getProductsBySubCate"]) -> name('client.productsByCategory') ;
 
-
-Route::get('/checkoutInfomation', function () {
-    return view('clients.checkoutInfomation');
-});
+Route::get('/checkoutInfomation',[Order_table_Controller::class,"index"]);
+Route::post('/checkoutInfomation',[Order_table_Controller::class,"postCheckout"]);
 
 Route::get('/logout',[LoginController::class,'logout'])->name('logout');
 
@@ -81,7 +78,6 @@ Route::post('/register',[RegisterController::class,'registerPost']) -> name('cli
 Route::get('/news', function () {
     return view('clients.news');
 }) -> name('client.news');
-
 
 // end clients
 // Route admin

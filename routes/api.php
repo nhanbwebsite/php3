@@ -52,7 +52,6 @@ Route::get('/cartAPI',[ProductController::class,"getCartTempAPI"])->name('getCar
 Route::get('cartUpdateAPI',[ProductController::class,"updateValueNumberCart"]);
 Route::get('cartDeleteAPI',[ProductController::class,"deleteCartTemp"]);
 
-
 // District
 
 Route::get('/districtAPI', [APIDistrictController::class,'getDistrictAPI'])->name('districtAPI');

@@ -19,6 +19,9 @@
         <div class="content__cart">
             <h2 class="content__cart-title">Giỏ hàng</h2>
             <h5 class="content__cart-amount">2 sản phẩm</h5>
+           @if(Session::has('orderSuccess'))
+                <x-alert type="success" value="{{Session::get('orderSuccess')}}" />
+           @endif
             <div class="row content__checkout mt-4">
                 <div class="col-12 col-md-7 col-lg-7" id="content__checkout-cartPro">
 {{--

@@ -15,11 +15,11 @@ class CartTemp extends Model
         'pro_code',
         'pro_name',
         'pro_price',
-        'pro_image',
-        'created_at',
-        'updated_at'
+        'pro_image'
+        // 'created_at',
+        // 'updated_at'
     ];
-    public $timestamps = true;
+    public $timestamps = false;
     public static function getCartTempByIdEndCode($id,$code){
             $data = DB::table('carttemp')
             ->where('pro_id','=',$id)
@@ -35,23 +35,38 @@ class CartTemp extends Model
         return $data;
     }
 
-    public static function findByCode($code){
+    public static function findByCodeAndEmail($code,$email){
         $data = DB::table('carttemp')
         ->where('pro_code','=', $code)
+        ->where('user_email',$email)
         ->first();
         return $data;
     }
 
-    public static function getCartTemp(){
-        if(isset($_GET['uid'])){
 
+
+    public static function getCartTemp(){
+        if(isset($_GET['uie'])){
+            // echo 'sdsdsd';
             $data = DB::table('carttemp')
-            ->where('user_id','=', $_GET['uid'])
+            ->where('user_email','=', $_GET['uie'])
             ->get();
             return $data;
         }
     }
 
 
+    public function getCartTempByEmail($email){
+
+        $data = DB::table('carttemp')
+            ->where('user_email','=', $email)
+            ->select('user_email')
+            ->first();
+            return $data;
+    }
+
+    public function deleteCartTempByEmail($email){
+        DB::delete('DELETE FROM '.$this->table.' WHERE user_email = ? ',$email);
+    }
 
 }

@@ -28,4 +28,18 @@ class User extends Model
         ->exists();
         return $data;
     }
+    public function getUserLast(){
+        $data = DB::table('users')
+                ->orderByDesc('id')
+                ->first();
+        return $data;
+    }
+
+    public static function findByEmail($email){
+        $data = DB::table('users')
+        ->where('email',$email)
+        ->first();
+        return $data;
+    }
+
 }

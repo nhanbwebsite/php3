@@ -247,8 +247,9 @@ if(box__chooseSeziGuide){
 // Ajax cart temp
 
 function AjacCart(){
-    let u_id = document.querySelector('#u_id');
-    if(u_id){
+    let u_e= document.querySelector('#u_e');
+    console.log(document.querySelector('#u_e'))
+    if(u_e){
         $.ajax({
             type: 'GET',
             url: 'http://127.0.0.1:8000/api/cartAPI/',
@@ -256,7 +257,7 @@ function AjacCart(){
                 'Content-Type':'application/json'
             },
             data: {
-                uid: u_id.innerText
+                uie: u_e.innerText
             },
             success: function(res){
                let htmls = res.data.map(function(item){
@@ -327,8 +328,6 @@ function AjacCart(){
                     item.style.display = 'none';
                 })
 
-
-
                }
 // tổng tiền checkout
 
@@ -345,7 +344,7 @@ function AjacCart(){
             tam__tinh.innerHTML = `${sumCheckout.toLocaleString()} ₫`;
             totalCheckkout.innerHTML = `${(Number(phiVanchuyen.innerHTML) + sumCheckout).toLocaleString()} ₫`;
             let totalCheckkoutHidden = box__checkout.querySelector('#totalCheckkoutHidden');
-            totalCheckkoutHidden.innerHTML = Number(phiVanchuyen.innerHTML) + sumCheckout;
+            totalCheckkoutHidden.value = Number(phiVanchuyen.innerHTML) + sumCheckout;
         }
 
 

@@ -72,7 +72,7 @@ Chi tiết sản phẩm
                 @if($productDetails->product_price_discount > 0)
                     {{number_format($productDetails->product_price - ($productDetails->product_price_discount *$productDetails->product_price)/100)}}
                 @else
-                {{$productDetails->product_price}}
+                {{number_format($productDetails->product_price)}}
                 @endif
                 <input type="bumber" name="price_post" hidden value="@if($productDetails->product_price_discount > 0){{round($productDetails->product_price - ($productDetails->product_price_discount *$productDetails->product_price)/100)}}@else{{$productDetails->product_price}}
                 @endif" id="">

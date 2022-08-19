@@ -50,6 +50,8 @@ class Product extends Model
            return $data;
         }
 
+
+
         public function getProductsSubCategory($id){
             $data = DB::table('products')
             ->select('products.*','sub_categories.sub_category_name')
@@ -83,7 +85,10 @@ class Product extends Model
             ->paginate(12);
             return $data;
         }
-
-
-
+        public static function productsForSearch($search){
+            $data = DB::table('products')
+            ->where('product_name', 'like',  '%'.$search.'%')
+            ->paginate(12);
+            return $data;
+        }
 }

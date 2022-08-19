@@ -9,31 +9,67 @@
 @section('content')
 <div class="row box__pd mb-5">
     {{-- <h2 class="title__header-textProduct">Sản phẩm giảm giá</h2> --}}
+    @if(isset($allProducts))
+        @foreach($allProducts as $item)
+        <div class="col-12 col-md-6 col-lg-3 product__box-col">
+            <div class="product__box-col-img">
+                <a class="product__box-col-img-link" href="#"><img src="{{asset('clients/images/products/')}}/{{$item->product_img}}" alt="{{$item->product_img}}"></a>
+                <a href="{{route('proDetail',['id'=>$item->id])}}" class="product__box-col-img-hover" ></a>
+            <div class="product__box-quickviews">
+                {{-- <i class="fa-solid fa-magnifying-glass" onclick="quickView(${item.id})" title="Xem nhanh sản phẩm" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i> --}}
+                <a href="{{route('proDetail',['id'=>$item->id])}}" class="fa-solid fa-magnifying-glass"  title="Xem nhanh sản phẩm"  data-bs-target="#staticBackdrop"></a>
+            </div>
+            <div class="item_New">
+                <img class="" src="{{asset('clients/images/seller/new.png')}}" alt="seller">
+            </div>
+            </div>
+            <div class="product__box-col-text">
+                <div class="product__box-col-text-title">
+                    {{$item->product_name}}
+                </div>
+                <div class="product__box-col-text-price">
+                    <del class="product__box-col-text-price-del">{{$item->product_price_discount > 0 ? number_format($item->product_price)  . '₫' : '' }} </del>
+                    <span class="product__box-col-text-price-now">{{$item->product_price_discount > 0 ? number_format($item->product_price - ($item->product_price_discount * $item->product_price)/100): number_format($item->product_price)}} ₫</span>
+                </div>
+            </div>
+        </div>
 
-    @foreach($allProducts as $item)
-    <div class="col-12 col-md-6 col-lg-3 product__box-col">
-        <div class="product__box-col-img">
-            <a class="product__box-col-img-link" href="#"><img src="{{asset('clients/images/products/')}}/{{$item->product_img}}" alt="{{$item->product_img}}"></a>
-            <a href="{{route('proDetail',['id'=>$item->id])}}" class="product__box-col-img-hover" ></a>
-        <div class="product__box-quickviews">
-            {{-- <i class="fa-solid fa-magnifying-glass" onclick="quickView(${item.id})" title="Xem nhanh sản phẩm" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i> --}}
-            <a href="{{route('proDetail',['id'=>$item->id])}}" class="fa-solid fa-magnifying-glass"  title="Xem nhanh sản phẩm"  data-bs-target="#staticBackdrop"></a>
-        </div>
-        <div class="item_New">
-            <img class="" src="{{asset('clients/images/seller/new.png')}}" alt="seller">
-        </div>
-        </div>
-        <div class="product__box-col-text">
-            <div class="product__box-col-text-title">
-                {{$item->product_name}}
+        @endforeach
+    @endif
+
+
+    @if(isset($productsForSearch))
+    <h2 align="center"> Kết quả tìm kiếm cho:  <font color="red" >"{{$productsText}}"</font> </h2>
+        @forelse($productsForSearch as $item)
+        <div class="col-12 col-md-6 col-lg-3 product__box-col">
+            <div class="product__box-col-img">
+                <a class="product__box-col-img-link" href="#"><img src="{{asset('clients/images/products/')}}/{{$item->product_img}}" alt="{{$item->product_img}}"></a>
+                <a href="{{route('proDetail',['id'=>$item->id])}}" class="product__box-col-img-hover" ></a>
+            <div class="product__box-quickviews">
+                {{-- <i class="fa-solid fa-magnifying-glass" onclick="quickView(${item.id})" title="Xem nhanh sản phẩm" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i> --}}
+                <a href="{{route('proDetail',['id'=>$item->id])}}" class="fa-solid fa-magnifying-glass"  title="Xem nhanh sản phẩm"  data-bs-target="#staticBackdrop"></a>
             </div>
-            <div class="product__box-col-text-price">
-                <del class="product__box-col-text-price-del">{{$item->product_price_discount > 0 ? number_format($item->product_price)  . '₫' : '' }} </del>
-                <span class="product__box-col-text-price-now">{{$item->product_price_discount > 0 ? number_format($item->product_price - ($item->product_price_discount * $item->product_price)/100): number_format($item->product_price)}} ₫</span>
+            <div class="item_New">
+                <img class="" src="{{asset('clients/images/seller/new.png')}}" alt="seller">
+            </div>
+            </div>
+            <div class="product__box-col-text">
+                <div class="product__box-col-text-title">
+                    {{$item->product_name}}
+                </div>
+                <div class="product__box-col-text-price">
+                    <del class="product__box-col-text-price-del">{{$item->product_price_discount > 0 ? number_format($item->product_price)  . '₫' : '' }} </del>
+                    <span class="product__box-col-text-price-now">{{$item->product_price_discount > 0 ? number_format($item->product_price - ($item->product_price_discount * $item->product_price)/100): number_format($item->product_price)}} ₫</span>
+                </div>
             </div>
         </div>
-    </div>
-    @endforeach
+        @empty
+        <h2>Không có sản phẩm phù hợp !</h2>
+        @endforelse
+
+    @endif
+
+
 
 </div>
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

@@ -37,10 +37,10 @@ function getWardsAPI(){
             return ` <option value="${item. wards_id}">${item.name}</option>`
          }).join('')
          $('#wards').html(htmls);
-         let provincetValue = document.querySelector('#province');
-         let districtValue = document.querySelector('#district');
-         let wardsValue = document.querySelector('#wards');
-         console.log(districtValue.value);
+        //  let provincetValue = document.querySelector('#province');
+        //  let districtValue = document.querySelector('#district');
+        //  let wardsValue = document.querySelector('#wards');
+        //  console.log(districtValue.value);
      })
 
 }
@@ -64,5 +64,15 @@ cart__text.onclick = function(){
 }
 
 
+function ajaxCheckout(){
+    let formCheckout = document.querySelector('#formCheckout');
+    if(formCheckout){
+        formCheckout.onsubmit = function(e){
+            e.preventDefault();
+        }
+    }
+}
+
+// ajaxCheckout()
 getprovince()
 

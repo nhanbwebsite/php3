@@ -46,8 +46,8 @@
            <a href="{{route('client.news')}}">Bài viết</a>
        </li>
        <li class="menu__item bold">
-           <form class="menu__search" >
-               <input class="menu__item-search" placeholder="Tìm sản phẩm" type="search">
+           <form class="menu__search" method="get" action="{{route('clients.search')}}">
+               <input class="menu__item-search" name="search" placeholder="Tìm sản phẩm" type="search">
            </form>
        </li>
        {{-- <li class="menu__item bold">
@@ -63,16 +63,18 @@
                 </span>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                     <li><a class="dropdown-item" style="font-size:14px" href="{{route('amin.user.updateGet',['id' => Session::get('user')['id']])}}">Cập nhật tài khoản</a></li>
-                    <span hidden id="u_id">{{Session::get('user')['id']}}</span>
+
                     @if(Session::has('user'))
                         @if(Session::get('user')['role']== 0 ||Session::get('user')['role']== 1 )
                             <li><a class="dropdown-item" style="font-size:14px" href="{{route('amin.products.list')}}">Khu vực quản trị</a></li>
-                        @endif
+                            <span hidden id="u_e">{{Session::get('user')['email'] ?? Session::get('eTemp')}}</span>
+                            @endif
                     @endif
                     <li><a class="dropdown-item" style="font-size:14px" href="{{route('logout')}}">Đăng xuất</a></li>
                   </ul>
                 @else
                 <a href="{{route('client.login')}}">Đăng nhập</a>
+                <span hidden id="u_e">{{Session::get('user')['email'] ?? Session::get('eTemp')}}</span>
             @endif
        </li>
        <li class="menu__item bold">
