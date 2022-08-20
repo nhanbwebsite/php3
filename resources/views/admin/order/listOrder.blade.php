@@ -41,6 +41,7 @@
                                      <option value="3">Đã hủy</option>
                                 @elseif($itemOrder->order_status == 2)
                                     <option selected disabled value="{{$itemOrder->order_status}}">Đã thanh toán</option>
+
                                     @elseif($itemOrder->order_status == 3)
                                     <option selected disabled value="{{$itemOrder->order_status}}">Đã hủy</option>
                                 @endif
@@ -51,8 +52,6 @@
                       </tr>
                       @endforeach
             @endif
-
-
         </tbody>
     </table>
     {{$orderList -> links()}}

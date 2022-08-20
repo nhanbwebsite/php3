@@ -211,7 +211,36 @@
     </li>
     </ul>
 </li>
-      </ul>
+{{-- end comment --}}
+
+{{-- thống kê --}}
+
+<li class="nav-item">
+    <a href=# class="nav-link">
+        <i class="fas fa-comment"></i>
+    <p>
+     Thống kê
+        <i class="right fas fa-angle-left"></i>
+    </p>
+    </a>
+    <ul class="nav nav-treeview">
+    <li class="nav-item">
+        <a href="{{route('admin.chart.productsByCategory')}}" class="nav-link">
+        <i class="far fa-circle nav-icon"></i>
+        <p>Thống kê sản phẩm theo danh mục</p>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a href="{{route('admin.chart.productsByOrder')}}" class="nav-link">
+        <i class="far fa-circle nav-icon"></i>
+        <p>Tổng số lượng bán ra của từng sản phẩm</p>
+        </a>
+    </li>
+    </ul>
+</li>
+
+{{-- kết thúc thống kê --}}
+</ul>
     {{-- /.sidebar-menu --}}
   </div>
   {{-- /.sidebar --}}

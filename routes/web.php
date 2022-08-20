@@ -19,6 +19,8 @@ use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\CommentController;
 // login
 use App\Http\Controllers\admin\LoginController;
+// forgot
+use App\Http\Controllers\clients\ForgotPass as ForgotPassController;
 // /order - checkout controller
 use App\Http\Controllers\Order_table_Controller;
 // ProductsController ADMIN
@@ -71,6 +73,8 @@ Route::get('/logout',[LoginController::class,'logout'])->name('logout');
 
 Route::get('/login',[LoginController::class,'loginGet']) -> name('client.login');
 Route::post('/login',[LoginController::class,'loginPost']) -> name('client.login');
+Route::get('/forgotpass',[ForgotPassController::class,'index']) -> name('client.forgot');
+Route::post('/forgotpass',[ForgotPassController::class,'handleForgot']) -> name('client.forgot');
 
 Route::get('/register',[RegisterController::class,'registerGet']) -> name('client.register');
 Route::post('/register',[RegisterController::class,'registerPost']) -> name('client.register');
@@ -146,6 +150,11 @@ Route::prefix('admin')->middleware('admin.checkLoginAdmin')->group(function () {
     Route::prefix('comments')->group(function (){
         // Bài viết
         Route::get('/',[CommentController::class,'listComment'])->name('admin.comment.list');
+    });
+    Route::prefix('chart')->group(function (){
+        // Bài viết
+        Route::get('/',[ProductController::class,'chartProductsControllersGetView'])->name('admin.chart.productsByCategory');
+        Route::get('/chartProductsByOrder',[ProductController::class,'chartProductsByOrderControllersGetView'])->name('admin.chart.productsByOrder');
     });
 
 });

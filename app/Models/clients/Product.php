@@ -89,4 +89,22 @@ class Product extends Model
             ->paginate(12);
             return $data;
         }
+
+        public  function chartProducts(){
+            $data = DB::table('products')
+                    ->select('sub_categories.sub_category_name',DB::raw('SUM(products.product_quantity) as total') )
+                    ->join('sub_categories','products.id_sub_cate','sub_categories.id')
+                    ->groupBy('sub_categories.sub_category_name')
+                    ->get();
+            return $data;
+        }
+
+        public  function chartProductsByOrder(){
+            $data = DB::table('products')
+                    ->select('products.product_name',DB::raw('count(*) as total'))
+                    ->join('order_details_table','products.id','order_details_table.order_details_pro_id')
+                    ->groupBy('product_name')
+                    ->get();
+            return $data;
+        }
 }

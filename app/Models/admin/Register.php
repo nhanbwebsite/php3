@@ -4,7 +4,7 @@ namespace App\Models\admin;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use DB;
 class Register extends Model
 {
     use HasFactory;
@@ -22,4 +22,11 @@ class Register extends Model
         'role',
         'phone'
     ];
+
+    public function checkEmailExist($email){
+        $data = DB::table('users')
+            ->where('email','=',$email)
+            ->exists();
+        return $data;
+    }
 }

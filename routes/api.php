@@ -23,6 +23,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/Allproducts',[ProductController::class,'index']);
+Route::get('/chartProductsAPI',[ProductController::class,'chartProductsControllers']);
+Route::get('/chartProductsByOrderAPI',[ProductController::class,'chartProductsByOrder']);
 // products by sub category
 Route::get('/productSubCate/{id}',[ProductController::class,'getProductsBySubCategory']);
 // products disscount

@@ -220,4 +220,29 @@ class ProductController extends Controller
         }
         // $data = CartTempModel::getCartTemp();
     }
+
+
+
+    // API chart
+
+    public function chartProductsControllersGetView(){
+        return view('admin.charts.chartProductsByCategory');
+    }
+    public function chartProductsByOrderControllersGetView(){
+        return view('admin.charts.chartProductsByOrder');
+    }
+
+
+    public function chartProductsControllers(){
+        $data = $this->product-> chartProducts();
+        return response() -> json([
+            'data' => $data
+        ]);
+    }
+    public function chartProductsByOrder(){
+        $data = $this->product-> chartProductsByOrder();
+        return response() -> json([
+            'data' => $data
+        ]);
+    }
 }
