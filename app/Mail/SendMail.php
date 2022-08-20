@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class SendMailForgotPass extends Mailable
+class SendMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -17,7 +17,7 @@ class SendMailForgotPass extends Mailable
      * @return void
      */
 
-     public $data;
+     public $data = [];
      public $subject;
      public $view;
 
@@ -35,6 +35,6 @@ class SendMailForgotPass extends Mailable
      */
     public function build()
     {
-        return $this->subject($this->subject) ->replyTo('nhanbpc01368@fpt.edu.vn','BNSHOP') ->view($this->view,['data'=>$this->data]);
+        return $this->subject($this->subject) ->replyTo('nhanbpc01368@fpt.edu.vn','BNSHOP') ->view($this->view,$this->data);
     }
 }

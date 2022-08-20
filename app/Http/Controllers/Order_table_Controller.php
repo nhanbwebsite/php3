@@ -9,6 +9,7 @@ use  App\Models\Order_details_table as Order_details_table_model;
 use App\Models\clients\CartTemp as CartTempModel;
 use App\Models\admin\Register;
 use App\Models\admin\User as UserModel;
+use App\Mail\SendMail;
 
 class Order_table_Controller extends Controller
 {
@@ -52,6 +53,12 @@ class Order_table_Controller extends Controller
             //  order detailss => id_order, order_detail_quantity, order_details_pro_id, order_details_pro_price
             $idOrderForDetailsIndert = $order->getOrderIdByLast();
             // dd($dataOrderDetailsInsert);
+              // mail
+              $myEmail = $dataOrderDetailsInsert[0]->user_email;
+
+
+              \Mail::to($myEmail)->send(new SendMail(['dataOrderDetailsInsert'=>$dataOrderDetailsInsert],'Thông tin đặt hàng','clients.sendEmailByOrder'));
+              // endmail
             foreach ($dataOrderDetailsInsert as $item){
                     $orderDetails = new Order_details_table_model();
                     $orderDetails->id_order = $idOrderForDetailsIndert->id;
@@ -65,6 +72,7 @@ class Order_table_Controller extends Controller
             // xóa cart temp
 
                 $cartTemp->deleteCartTempByEmail([$res->session()->get('user')['email']]);
+
 
                 return  redirect(route('client.cart'))->with('orderSuccess','Đặt hàng thành công');
         } else{
@@ -98,6 +106,15 @@ class Order_table_Controller extends Controller
 
             // details inser
             $dataOrderDetailsInsert =  $order-> getOrderByUserEmail($res->session()->get('eTemp'));
+              // mail
+
+              $myEmail = $dataUserInsert->email;
+
+
+              \Mail::to($myEmail)->send(new SendMail(['dataOrderDetailsInsert'=>$dataOrderDetailsInsert],'Thông tin đặt hàng','clients.sendEmailByOrder'));
+              // endmail
+
+
             $idOrderForDetailsIndert = $order->getOrderIdByLast();
             foreach ($dataOrderDetailsInsert as $item){
                 $orderDetails = new Order_details_table_model();
@@ -143,6 +160,10 @@ class Order_table_Controller extends Controller
 
             // details inser
             $dataOrderDetailsInsert =  $order-> getOrderByUserEmail($res->session()->get('eTemp'));
+
+            $myEmail = $dataUserInsert->email;
+
+            \Mail::to($myEmail)->send(new SendMail(['dataOrderDetailsInsert'=>$dataOrderDetailsInsert],'Hóa đơn đặt hàng','clients.sendEmailByOrder'));
 
             $idOrderForDetailsIndert = $order->getOrderIdByLast();
             foreach ($dataOrderDetailsInsert as $item){

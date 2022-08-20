@@ -79,6 +79,7 @@ class Product extends Model
         public static function AllProducts(){
             $data = DB::table('products')
             ->select('*')
+            ->where('products.product_status','=',1)
             ->orderByDesc('products.created_at')
             ->paginate(12);
             return $data;
@@ -107,4 +108,6 @@ class Product extends Model
                     ->get();
             return $data;
         }
+
+
 }

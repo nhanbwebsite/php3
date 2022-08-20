@@ -30,7 +30,6 @@
         </thead>
         <tbody>
             @foreach($dataList as $item)
-
                 <tr>
                     {{-- <th style="vertical-align:middle" scope="row">1</th> --}}
                     <td style="vertical-align:middle"><a href="#">{{$item->product_name}}</a></td>
@@ -39,7 +38,7 @@
                     <td style="vertical-align:middle">{{number_format($item->product_price,2)}} ₫</td>
                     <td style="vertical-align:middle">{{$item->product_price_discount}} %</td>
                     <td style="vertical-align:middle">
-                        <select class="form-select" aria-label="Default select example">
+                        <select class="form-select proStatus" data-id = "{{$item->id}}" aria-label="Default select example">
 
                            @if($item->product_status == 1)
                             <option value ="1" selected>Hiển thị</option>

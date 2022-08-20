@@ -121,5 +121,19 @@ class ProductController extends Controller
         $modelPro -> handleDeleteProduct($id);
         return redirect(route('amin.products.list'))->with('deleteSuccess','Xóa sản phẩm thành công');
     }
+
+    // update status AJAX
+    public function updateStatusProAjax(){
+
+        if(isset($_GET['id']) && isset($_GET['status'])){
+
+        $proModel = AdminProductModel::find($_GET['id']);
+        $proModel->product_status = $_GET['status'];
+        $proModel->save();
+            echo 'Cập nhật trạng thái sản phẩm thành công';
+        } else {
+            echo 'Cập nhật trạng thái sản phẩm thát bại';
+        }
+    }
 }
 

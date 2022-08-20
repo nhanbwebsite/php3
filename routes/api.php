@@ -4,9 +4,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\clients\ProductController;
 use App\Http\Controllers\APIDistrictController;
-
+use App\Http\Controllers\admin\ProductController as ProductControllerAdmin;
 use App\Http\Controllers\APIWardsController;
 use App\Http\Controllers\ProvinceController;
+use App\Http\Controllers\admin\OrderController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -62,3 +63,10 @@ Route::get('/districtAPI', [APIDistrictController::class,'getDistrictAPI'])->nam
 Route::get('/wardsAPI', [APIWardsController::class,'getWardsAPI'])->name('getWardsAPI');
 // provinceAPI
 Route::get('/provinceAPI', [ProvinceController::class,'getprovince'])->name('provinceAPI');
+
+
+// updateProStatus
+
+Route::get('/updateProStatus', [ProductControllerAdmin::class,'updateStatusProAjax'])->name('admin.updateProStatus');
+Route::get('/updateOrdertatus', [OrderController::class,'updateStatusOrderjax'])->name('admin.updateOrderStatus');
+

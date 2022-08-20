@@ -64,7 +64,7 @@ Route::get('/cart', function () {
     return view('clients.cart');
 }) -> name('client.cart') ;
 
-Route::get('/productsByCategory/{id}',[ProductController::class,"getProductsBySubCate"]) -> name('client.productsByCategory') ;
+Route::get('/productsByCategory/{id}',[ProductController::class,"getProductsBySubCate"]) -> name('client.productsByCategory');
 
 Route::get('/checkoutInfomation',[Order_table_Controller::class,"index"]);
 Route::post('/checkoutInfomation',[Order_table_Controller::class,"postCheckout"]);
@@ -75,6 +75,10 @@ Route::get('/login',[LoginController::class,'loginGet']) -> name('client.login')
 Route::post('/login',[LoginController::class,'loginPost']) -> name('client.login');
 Route::get('/forgotpass',[ForgotPassController::class,'index']) -> name('client.forgot');
 Route::post('/forgotpass',[ForgotPassController::class,'handleForgot']) -> name('client.forgot');
+Route::get('/confirmResetPass',[ForgotPassController::class,'resetPass']) -> name('clients.confirmResetPass');
+Route::get('/a',function(){
+    return view('clients.sendEmailByOrder');
+});
 
 Route::get('/register',[RegisterController::class,'registerGet']) -> name('client.register');
 Route::post('/register',[RegisterController::class,'registerPost']) -> name('client.register');

@@ -69,8 +69,10 @@ class Order_table extends Model
 
     public function getUserByOrderUserId(){
         $data = DB::table('order_table')
-                    ->join('users','order_table.id_kh','=','users.id')
-                   ->paginate(9);
+            ->select('order_table.*','users.fullname','users.email')
+            ->join('users','order_table.id_kh','=','users.id')
+            ->paginate(9);
+
         return $data;
     }
 

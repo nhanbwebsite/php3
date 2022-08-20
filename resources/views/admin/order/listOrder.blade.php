@@ -20,7 +20,6 @@
             @if(!empty($orderList))
                 @foreach($orderList as $key => $itemOrder)
 
-
                     <tr>
                         <th style="vertical-align:middle" scope="row">{{++$key}}</th>
                         <td style="vertical-align:middle"><a href="#">{{$itemOrder->email}}</a></td>
@@ -28,7 +27,7 @@
                         <td style="vertical-align:middle">{{$itemOrder->order_address}}</td>
                         <td style="vertical-align:middle">{{$itemOrder->order_note == null ? "Không" : $itemOrder->order_note  }}</td>
                         <td style="vertical-align:middle">
-                            <select style="width:170px" class="form-select" aria-label="Default select example">
+                            <select style="width:170px" data-id="{{$itemOrder->id}}" class="form-select orderstatus" aria-label="Default select example">
                                 @if($itemOrder->order_status == 0)
                                      <option selected value="{{$itemOrder->order_status}}">Chờ xử lý</option>
                                      <option value="1" >Đang vận chuyển</option>
@@ -64,5 +63,6 @@
 @endsection
 {{-- js for this page --}}
 @section('jsForThisPage')
-    {{asset('admin/js/products/listProducts.js')}}"
+    {{asset('admin/js/order/order.js')}}"
 @endsection
+
