@@ -75,5 +75,16 @@ class Order_table extends Model
 
         return $data;
     }
+    public function getOrderByEmails($email){
+        $data = DB::table('order_table')
+            ->select('order_table.id',DB::raw('SUM(order_details_table.order_details_pro_price) as total'))
+            ->join('order_details_table','order_table.id','=','order_details_table.id_order')
+            ->groupBy('order_table.id')
+            ->get();
+
+        return $data;
+    }
+
+
 
 }

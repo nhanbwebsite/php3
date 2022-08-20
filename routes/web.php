@@ -83,6 +83,8 @@ Route::get('/a',function(){
 Route::get('/register',[RegisterController::class,'registerGet']) -> name('client.register');
 Route::post('/register',[RegisterController::class,'registerPost']) -> name('client.register');
 
+Route::get('/accountClient',[Order_table_Controller::class,'getOrderByIdUser'])->middleware('checkSessionUser') -> name('clients.customer_account_management');
+
 Route::get('/news', function () {
     return view('clients.news');
 }) -> name('client.news');

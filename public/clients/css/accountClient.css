@@ -1,0 +1,10 @@
+*{
+    font-size: 1.6rem;
+}
+.box__account_clients{
+    min-height: 100vh;
+}
+
+.box__pd{
+    padding:20px;
+}

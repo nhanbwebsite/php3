@@ -13,6 +13,9 @@ use App\Mail\SendMail;
 
 class Order_table_Controller extends Controller
 {
+
+    public $data = [];
+
     public function index(){
         return view('clients.checkoutInfomation');
     }
@@ -188,6 +191,16 @@ class Order_table_Controller extends Controller
         }
 
 
+    }
+
+
+
+
+    public function getOrderByIdUser(Request $res){
+
+          $order = new Order_table_model();
+          $dataOrder = $order->getOrderByEmails('sdsd');
+          return view('clients.customer_account_management');
     }
 
 

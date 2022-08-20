@@ -62,13 +62,13 @@
                     @endif
                 </span>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" style="font-size:14px" href="{{route('amin.user.updateGet',['id' => Session::get('user')['id']])}}">Cập nhật tài khoản</a></li>
-
                     @if(Session::has('user'))
                         @if(Session::get('user')['role']== 0 ||Session::get('user')['role']== 1 )
                             <li><a class="dropdown-item" style="font-size:14px" href="{{route('amin.products.list')}}">Khu vực quản trị</a></li>
                             <span hidden id="u_e">{{Session::get('user')['email'] ?? Session::get('eTemp')}}</span>
                             @endif
+                    @else
+
                     @endif
                     <li><a class="dropdown-item" style="font-size:14px" href="{{route('logout')}}">Đăng xuất</a></li>
                   </ul>

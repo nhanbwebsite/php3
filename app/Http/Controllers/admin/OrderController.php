@@ -15,7 +15,6 @@ class OrderController extends Controller
         return view('admin.order.listOrder',$this->data);
     }
 
-
     public function updateStatusOrderjax(){
 
         if(isset($_GET['id']) && isset($_GET['status'])){

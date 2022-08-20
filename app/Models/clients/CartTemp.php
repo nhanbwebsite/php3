@@ -15,7 +15,8 @@ class CartTemp extends Model
         'pro_code',
         'pro_name',
         'pro_price',
-        'pro_image'
+        'pro_image',
+        'user_email'
         // 'created_at',
         // 'updated_at'
     ];

@@ -104,11 +104,27 @@ class ProductController extends Controller
         // xử lý khi đã đăng nhập
        if( $res->session()->has('user')){
            $CartTemp = new CartTempModel();
+           $CartTemp->user_email = $res->session()->get('user')->email;
            $checkEmailExistCartTemp = $CartTemp->getCartTempByEmail($res->session()->get('user')->email);
-        //    dd($res->session()->get('user')->email);
-            $emailCheck = $checkEmailExistCartTemp->user_email;
+            if($checkEmailExistCartTemp){
+                $checkProExist = $CartTemp::getCartTempByIdEndCode($res->product_id_post,$res->pro_code_post);
+                $checkEmail = $checkEmailExistCartTemp->user_email;
+                if($checkProExist > 0 && $checkEmail == $CartTemp->user_email){
 
-            $CartTemp->user_email = $res->session()->get('user')->email;
+                    $dataCheckExist = $CartTemp::findByCodeAndEmail($res->pro_code_post,$CartTemp->user_email);
+
+                    if($dataCheckExist){
+                        $CartTemp =   $CartTemp::find($dataCheckExist->id);
+                        $CartTemp->pro_quantity = $CartTemp->pro_quantity + $res->quatity;
+                        $CartTemp->save();
+                        return back()->with('addCartSuccess','Thêm sản phẩm vào giỏ hàng thành công ^^');
+                    }
+                }
+
+            }
+
+        //    dd($res->session()->get('user')->email);
+
             $CartTemp->pro_id = $res->product_id_post;
             $CartTemp->pro_code = $res->pro_code_post;
             $CartTemp->pro_name = $res->product_name_post;
@@ -119,16 +135,7 @@ class ProductController extends Controller
             // dd($res->all());
        // check product exist
 
-        $checkProExist = $CartTemp::getCartTempByIdEndCode($res->product_id_post,$res->pro_code_post);
-        if($checkProExist > 0 && $emailCheck == $CartTemp->user_email){
-            $dataCheckExist = $CartTemp::findByCodeAndEmail($res->pro_code_post,$CartTemp->user_email);
-            if($dataCheckExist){
-                $CartTemp =   $CartTemp::find($dataCheckExist->id);
-                $CartTemp->pro_quantity = $CartTemp->pro_quantity + $res->quatity;
-                $CartTemp->save();
-                return back()->with('addCartSuccess','Thêm sản phẩm vào giỏ hàng thành công ^^');
-            }
-        }
+
 
             $CartTemp->save();
             return back()->with('addCartSuccess','Thêm sản phẩm vào giỏ hàng thành công ^^');
@@ -136,10 +143,32 @@ class ProductController extends Controller
 
         //  handle when client don't login
          $CartTemp = new CartTempModel();
+
         //   create a code temp for email field car temp when client doesn't login
         if($res->session()->has('eTemp')){
             // $res->session()->forget('eTemp');
             $CartTemp->user_email = $res->session()->get('eTemp');
+            $checkEmailExistCartTemp = $CartTemp->getCartTempByEmail($res->session()->get('eTemp'));
+            if($checkEmailExistCartTemp){
+                $checkProExist = $CartTemp::getCartTempByIdEndCode($res->product_id_post,$res->pro_code_post);
+                // dd($checkEmailExistCartTemp->user_email);
+                // dd($CartTemp->user_email);
+                $checkEmail = $checkEmailExistCartTemp->user_email;
+
+               if($checkProExist > 0 && $checkEmail  == $CartTemp->user_email){
+                   $dataCheckExist = $CartTemp::findByCodeAndEmail($res->pro_code_post, $checkEmail);
+
+                   if($dataCheckExist){
+                       $CartTemp =   $CartTemp::find($dataCheckExist->id);
+                       $CartTemp->pro_quantity = $CartTemp->pro_quantity + $res->quatity;
+                       $CartTemp->save();
+                       return back()->with('addCartSuccess','Thêm sản phẩm vào giỏ hàng thành công ^^');
+                   }
+               }
+
+            }
+
+
             $CartTemp->pro_id = $res->product_id_post;
             $CartTemp->pro_code = $res->pro_code_post;
             $CartTemp->pro_name = $res->product_name_post;
@@ -148,20 +177,6 @@ class ProductController extends Controller
             $CartTemp->pro_quantity = $res->quatity;
            // check product exist
 
-           $checkEmailExistCartTemp = $CartTemp->getCartTempByEmail($res->session()->get('eTemp'))->user_email;
-
-           $checkProExist = $CartTemp::getCartTempByIdEndCode($res->product_id_post,$res->pro_code_post);
-            // dd($checkEmailExistCartTemp->user_email);
-            // dd($CartTemp->user_email);
-           if($checkProExist > 0 && $checkEmailExistCartTemp  == $CartTemp->user_email){
-               $dataCheckExist = $CartTemp::findByCodeAndEmail($res->pro_code_post, $checkEmailExistCartTemp);
-               if($dataCheckExist){
-                   $CartTemp =   $CartTemp::find($dataCheckExist->id);
-                   $CartTemp->pro_quantity = $CartTemp->pro_quantity + $res->quatity;
-                   $CartTemp->save();
-                   return back()->with('addCartSuccess','Thêm sản phẩm vào giỏ hàng thành công ^^');
-               }
-           }
 
                $CartTemp->save();
                return back()->with('addCartSuccess','Thêm sản phẩm vào giỏ hàng thành công ^^');
