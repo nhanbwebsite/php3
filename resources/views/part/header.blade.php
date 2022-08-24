@@ -66,19 +66,22 @@
                         @if(Session::get('user')['role']== 0 ||Session::get('user')['role']== 1 )
                             <li><a class="dropdown-item" style="font-size:14px" href="{{route('amin.products.list')}}">Khu vực quản trị</a></li>
                             <span hidden id="u_e">{{Session::get('user')['email'] ?? Session::get('eTemp')}}</span>
-                            @endif
-                    @else
-
+                        @else
+                        <span hidden id="u_e">{{Session::get('user')['email'] ?? Session::get('eTemp')}}</span>
+                        @endif
                     @endif
+                    <li><a class="dropdown-item" style="font-size:14px" href="{{route('clients.customer_account_management')}}">Quản lý tài khoản</a></li>
                     <li><a class="dropdown-item" style="font-size:14px" href="{{route('logout')}}">Đăng xuất</a></li>
-                  </ul>
+
+                </ul>
                 @else
-                <a href="{{route('client.login')}}">Đăng nhập</a>
                 <span hidden id="u_e">{{Session::get('user')['email'] ?? Session::get('eTemp')}}</span>
+                <a href="{{route('client.login')}}">Đăng nhập</a>
+
             @endif
        </li>
        <li class="menu__item bold">
-           <span class="cart__text">Giỏ hàng (0)</span>
+           <span class="cart__text">Giỏ hàng <span title="số lượng sản phẩm trong giỏ hàng" style="color:red" id="quantityCart"></span> </span>
        </li>
        <div class="line"></div>
    </ul>
@@ -92,7 +95,7 @@
             </form>
         </li>
         <li class="menu__item bold giohang_mega">
-            <span class="cart__text">Giỏ hàng (0)</span>
+            <span class="cart__text">Giỏ hàng</span>
         </li>
    </ul>
    <div class="submenuMega">
@@ -263,10 +266,10 @@
     <div class="cart__item">
        <div class="box__title-among">
            <div class="cart__title-text">
-            <a href="#" class="cart__title" >Giỏ hàng</a>
+            <a href="#" class="cart__title" >Giỏ hàng  <span style="color:red" title="số lượng sản phẩm trong giỏ hàng" id="quantityCartmega"></span> </a>
            </div>
             <div class="cart__amount-total">
-                <span>0 sản phẩm</span>
+                {{-- <span>0 sản phẩm</span> --}}
                 <span class="cart__Float-total"></span>
             </div>
        </div>

@@ -74,8 +74,11 @@ class ProductController extends Controller
     }
 
     public function update($id){
+        $Size = new SizeModel();
+        $this->data['listSizeAll'] =  $Size->all();
         $this->data['proModel'] = AdminProductModel::find($id);
         $this->data['allSubcate'] = AdminModelCategory::all();
+
         // dd($this->data['allSubcate']);
         // dd($proModel);
         return view('admin/products/updateProducts',$this->data);

@@ -70,4 +70,13 @@ class CartTemp extends Model
         DB::delete('DELETE FROM '.$this->table.' WHERE user_email = ? ',$email);
     }
 
+
+    public function getQuantityCarttemp($email){
+        $data = DB::table('carttemp')
+                    ->select(DB::raw('SUM(pro_quantity) as totalQuantityCartTemp'))
+                    // ->groupBy('pro_quantity')
+                    ->where('user_email','=',$email)
+                    ->first();
+        return $data;
+    }
 }

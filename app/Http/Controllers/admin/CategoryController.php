@@ -55,10 +55,18 @@ class CategoryController extends Controller
     }
 
     public function handleDeleteCategory($id){
+
+      $check =  $this ->adminModelCategory->checkProByCate($id);
+    if($check){
+        return redirect(route('amin.category.list')) -> with('producstExist','Không thể xóa danh mục, đã có sản phẩm tồn tại trong danh mục này !');
+    }
+
         $data = [
             $id
         ];
         $this->adminModelCategory ->hendleDeleteCategory($data);
         return redirect(route('amin.category.list')) -> with('deleteSuccess','Xóa danh mục thành công');
     }
+
+
 }

@@ -22,18 +22,19 @@
 
         <tbody>
           <tr>
-                <th width="35%" scope="row">Tên sản phẩm</th>
-                <th width="30%">Giá sản phẩm (VNĐ)</th>
+                <th width="5%" scope="row">STT</th>
+                <th width="25%" scope="row">Tên sản phẩm</th>
+                <th width="25%">Giá sản phẩm (VNĐ)</th>
                 <th width="10%">Số lượng</th>
-                <th width="33%">Tổng (VNĐ)</th>
+                <th width="25%">Thành tiền (VNĐ)</th>
           </tr>
-
           @php
                  $tong = 0
           @endphp
-            @foreach($data['dataOrderDetailsInsert'] as $item)
+            @foreach($data['dataOrderDetailsInsert'] as $key => $item)
 
                  <tr>
+                    <td scope="row">{{++$key}}</td>
                     <td scope="row">{{$item->pro_name}} - {{$item->pro_code}}</td>
                     <td style="text-align:right">{{number_format($item->pro_price)}}</td>
                     <td style="text-align:right">{{$item->pro_quantity}} </td>
@@ -48,10 +49,5 @@
          </tr>
         </tbody>
       </table>
-
-
-
-
-
 </body>
 </html>

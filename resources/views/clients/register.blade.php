@@ -15,37 +15,39 @@
         <div class="header">
           <h3>Đăng ký tài khoản</h3>
           <p> Trường có dấu (*) là bắt buộc nhập </p>
+          @if(Session::has('emailExist'))
+                <p style="color:red">{{Session::get('emailExist')}}</p>
+          @endif
         </div>
         <div class="sep"></div>
         <div class="inputs">
             @error('fullname')
             <p> <font color="red">  {{$message}}</font></p>
             @enderror
-          <input type="text" name = "fullname" placeholder="Họ và tên *" />
+          <input type="text" name = "fullname" value="{{old('fullname')}}" placeholder="Họ và tên *" />
           @error('email')
             <p> <font color="red">  {{$message}}</font></p>
          @enderror
-          <input type="email" name ="email" placeholder="Địa chỉ e-mail *" autofocus />
+          <input type="email" name ="email"  value="{{old('email')}}" placeholder="Địa chỉ e-mail *" autofocus />
           @error('password')
          <p> <font color="red">  {{$message}}</font></p>
          @enderror
-          <input type="password" name = "password" placeholder="Mật khẩu *" />
+          <input type="password" name = "password"  value="{{old('password')}}" placeholder="Mật khẩu *" />
           @error('confirm_password')
          <p> <font color="red">  {{$message}}</font></p>
          @enderror
-          <input type="password" name = "confirm_password" placeholder="Nhập lại mật khẩu *" />
+          <input type="password" name = "confirm_password" value="{{old('confirm_password')}}" placeholder="Nhập lại mật khẩu *" />
           @error('address')
          <p> <font color="red">  {{$message}}</font></p>
          @enderror
-          <input type="text" name = "address" placeholder="Địa chỉ" />
+          <input type="text" name = "address" value="{{old('address')}}" placeholder="Địa chỉ" />
           @error('phone')
          <p> <font color="red">  {{$message}}</font></p>
          @enderror
-          <input type="text" name = "phone" placeholder="Số điện thoại" />
+          <input type="text" name = "phone" value="{{old('phone')}}" placeholder="Số điện thoại" />
           <x-button type="submit" class="box__button-buy" value="Đăng ký"/>
           <br />
          <div class="box__btn">
-
             <a class="text-signup" href="/login"> Đăng nhập</a>
             <a class="text-signup text-trang-chu" href="/">Về trang chủ</a>
          </div>

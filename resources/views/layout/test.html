@@ -5,8 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="../../../public/clients/js/jquery.js"></script>
 </head>
 <body>
+
+
+    <script>
+
+
+            function sleep(time) {
+                setTimeout(function(){
+                    return new Promise()
+                },time)
+            }
+
+            sleep(1000)
+                    .then((data) => {
+                          return 1
+                    })
+                    .then((data) => {
+                        console.log(data)
+                    })
+
+    </script>
+
+
+
 </body>
 </html>

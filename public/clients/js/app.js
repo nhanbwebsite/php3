@@ -119,20 +119,22 @@ if(inputValueAmount && summation && subtraction){
 
     subtraction.forEach((item,index) => {
         item.addEventListener('click', () => {
+            console.log(item);
             inputValueAmount[index].value--;
             if(inputValueAmount[index].value <= 0){
                 inputValueAmount[index].value = 1;
             }
-
             uploadValueInputNumberCart(item)
+            getQuantityCartTemp();
         })
+
     })
 
     summation.forEach((item,index) => {
         item.addEventListener('click', () => {
             inputValueAmount[index].value++;
-
             uploadValueInputNumberCart(item)
+            getQuantityCartTemp();
 
         })
     })
@@ -142,6 +144,7 @@ if(inputValueAmount){
     inputValueAmount.forEach((item) => {
         item.onchange = () => {
             uploadValueInputNumberCart(item)
+            getQuantityCartTemp();
         }
     })
 }
@@ -246,9 +249,11 @@ if(box__chooseSeziGuide){
 
 // Ajax cart temp
 
+
 function AjacCart(){
     let u_e= document.querySelector('#u_e');
-    console.log(document.querySelector('#u_e'))
+
+    // console.log(document.querySelector('#u_e'))
     if(u_e){
         $.ajax({
             type: 'GET',
@@ -297,7 +302,40 @@ function AjacCart(){
                    </div>
                     `;
                })
+
                let cart__item_cartLoadA = document.querySelector('.cart__item_cartLoadA');
+               if(htmls.length == 0){
+                let box__button = document.querySelector('.box__button-cartFloat');
+                let content__checkout = document.querySelector('.content__checkout');
+                if(content__checkout){
+
+                    content__checkout.style.display = 'none';
+                }
+                if(box__button){
+
+                    box__button.style.display = 'none';
+                }
+                let content__cart = document.querySelector('.content__cart');
+                if(content__cart){
+                   setTimeout(() =>{
+                    content__cart.innerHTML = `<div class="box__cart-empty mt-5">
+                    <img src="http://127.0.0.1:8000/clients/images/cart/empty_cart_retina.png" alt="">
+                    <h3  class="mt-4">Không có sản phẩm nào trong giỏ hàng của bạn </h3>
+                    <a  href="/allProducts" class="mt-5 text__buy-cart-empty">Mua sắm ngay nào  <i class="fa-solid fa-cart-shopping"></i></a>
+                    </div>`;
+                   },1500)
+                }
+
+                cart__item_cartLoadA.innerHTML = `
+                <div class="box__cart-empty mt-5">
+
+                <img src="http://127.0.0.1:8000/clients/images/cart/empty_cart_retina.png" alt="">
+                <h3  class="mt-4">Không có sản phẩm nào trong giỏ hàng của bạn </h3>
+                <a  href="/allProducts" class="mt-5 text__buy-cart-empty">Mua sắm ngay nào  <i class="fa-solid fa-cart-shopping"></i></a>
+                </div>
+                `;
+                return false;
+            }
                cart__item_cartLoadA.innerHTML = htmls.join('');
                let content__checkout = document.querySelector('#content__checkout-cartPro');
                if(content__checkout){
@@ -349,7 +387,7 @@ function AjacCart(){
 
 
                    value_number_auto();
-
+                   getQuantityCartTemp();
             //    số lượng khi load trang
                function valueNumberCartOnLoad(){
                     let totalForOneProduct = document.querySelectorAll('.totalForOneProduct');
@@ -375,11 +413,13 @@ function AjacCart(){
                         }
 
                     }
-                    valueNumberViewCart()
+                    valueNumberViewCart();
+                    getQuantityCartTemp();
                     // kết thúc price view cart
                     cart__totalHTML.innerHTML = `Tạm tính: ${totalWhenLoad.toLocaleString()} ₫`;
                }
                valueNumberCartOnLoad()
+               getQuantityCartTemp();
             //    kết thúc số lượng load trang
 
 
@@ -405,6 +445,7 @@ function AjacCart(){
                                      let boxremove = item.parentElement.parentElement.parentElement.parentElement
                                      boxremove.remove();
                                      valueNumberCartOnLoad()
+                                     getQuantityCartTemp();
                                  }
                              })
                          }
@@ -420,8 +461,52 @@ function AjacCart(){
         });
     }
    }
-   active_untive_cart()
-   AjacCart()
+
+
+   function getQuantityCartTemp(){
+    let u_e= document.querySelector('#u_e');
+        if(u_e){
+            $.ajax({
+                type: 'GET',
+                url: 'http://127.0.0.1:8000/api/cartAPIQuanTity/',
+                headers: {
+                    'Content-Type':'application/json'
+                },
+                data: {
+                    uie: u_e.innerText
+                },
+
+                success: function (response) {
+                    let quantity = Number(response.data.totalQuantityCartTemp);
+                    if(quantity > 0){
+                       let quantityCart = document.querySelector('#quantityCart');
+                       if(quantityCart){
+                        quantityCart.innerHTML = `(${response.data.totalQuantityCartTemp})`
+                      }
+
+                        let quantityCartmega = document.querySelector('#quantityCartmega');
+                        if(quantityCartmega){
+                            quantityCartmega.innerHTML = `(${response.data.totalQuantityCartTemp})`
+                        }
+                   } else{
+                    let quantityCartmega = document.querySelector('#quantityCartmega');
+                    if(quantityCartmega){
+                        quantityCartmega.innerHTML = '(0)';
+                    }
+                    let quantityCart = document.querySelector('#quantityCart');
+                    if(quantityCart){
+                     quantityCart.innerHTML = '(0)';
+                   }
+                   }
+
+                }
+            })
+        }
+   }
+   getQuantityCartTemp();
+   value_number_auto();
+   active_untive_cart();
+   AjacCart();
 
 
 

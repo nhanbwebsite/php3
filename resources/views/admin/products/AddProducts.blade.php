@@ -33,14 +33,14 @@
             </div>
             <div class="mb-3">
               <label for="" class="form-label">Giá khuyến mãi (%)<span style="color:red" >*</span></label>
-              <input type="number" min="0" max="100" class="form-control" id="" name="product_price_discount" value="{{old('product_price_discount')}}" placeholder="Nhập giá khuyến mãi sản phảm theo %, VD: 5">
-              @error('product_price')
+              <input type="number" min="0" max="100" value="0" class="form-control" id="" name="product_price_discount" value="{{old('product_price_discount')}}" placeholder="Nhập giá khuyến mãi sản phảm theo %, VD: 5">
+              @error('product_price_discount')
                 <span style="color:red" >{{$message}}</span>
               @enderror
             </div>
             <div class="mb-3">
               <label for="" class="form-label">Số lượng sản phẩm (lớn hơn hoặc = 0)<span style="color:red" >*</span></label>
-               <input type="number" min="0" class="form-control" id="" name="product_quantity" value="{{old('product_quantity')}}" placeholder="Nhập giá sản phẩm">
+               <input type="number" min="0" class="form-control" id="" value="0" name="product_quantity" value="{{old('product_quantity')}}" placeholder="Nhập giá sản phẩm">
               @error('product_quantity')
                <span style="color:red" >{{$message}}</span>
               @enderror
@@ -58,13 +58,10 @@
                     @empty
                     <h4>Không có size, vui lòng thêm size trước khi thêm sản phẩm</h4>
                 @endforelse
-
-
-
-              @error('product_size')
-              <span style="color:red" >{{$message}}</span>
-              @enderror
             </div>
+            @error('product_size')
+            <span style="color:red" >{{$message}}</span>
+            @enderror
 
              <div class="mb-3">
                 <label for="" class="form-label">Thông tin chi tiết sản phẩm<span style="color:red" >*</span></label>

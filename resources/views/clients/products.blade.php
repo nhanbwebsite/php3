@@ -186,7 +186,7 @@
 
 {{-- css for page --}}
 @section('cssForPage')
-
+  {{asset('clients/css/products.css')}}
 @endsection
 {{-- end css for page --}}
 

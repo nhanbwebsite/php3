@@ -182,25 +182,70 @@ class Order_table_Controller extends Controller
             $cartTemp->deleteCartTempByEmail([$res->session()->get('eTemp')]);
 
             return  redirect(route('client.cart'))->with('orderSuccess','Đặt hàng thành công');
-
         }
 
-
-
-
         }
-
-
     }
 
 
-
-
-    public function getOrderByIdUser(Request $res){
-
+    public function getOrderDetailsByUser(Request $res){
           $order = new Order_table_model();
-          $dataOrder = $order->getOrderByEmails('sdsd');
+
+          $this->data['dataOrder'] = $order->getOrderDetailsByEmails($res->session()->get('user')->email);
+        //   dd($this->data['dataOrder']);
+          return view('clients.customer_account_management',$this->data);
+    }
+    public function getOrderByIdUser(Request $res){
+          $order = new Order_table_model();
+          $dataOrder = $order->getOrdersByEmails($res->session()->get('user')->email);
+          dd($dataOrder);
           return view('clients.customer_account_management');
+    }
+
+    public function handleUpdateAccountClient(Request $res){
+        if(isset($res->fullname) && isset($res->email) && isset($res->phone)){
+
+            $user = new UserModel;
+            $userData = $user->findByEmail($res->session()->get('user')->email);
+            $findUser = UserModel::find($userData->id);
+
+            $findUser->fullname = $res->fullname;
+            $findUser->email  = $res->email;
+            $findUser->phone = $res->phone;
+            $findUser->save();
+
+            $res->session()->forget('user');
+            return redirect(route('client.login'));
+        } else {
+            if(isset($res->oldPass) && isset($res->newPass) && isset($res->confirmPass)){
+
+                if($res->newPass == $res->confirmPass){
+
+                    $user = new UserModel;
+                    $userData = $user->findByEmail($res->session()->get('user')->email);
+            //    echo $userData->password;
+            //    echo '<br />';
+            //    echo md5($res->newPass);
+            //    die();
+                    if(md5($res->oldPass) ==  $userData->password){
+
+                        $findUser = UserModel::find($userData->id);
+                        $findUser->password = md5($res->newPass);
+                        $findUser->save();
+
+                        $res->session()->forget('user');
+                        return redirect(route('client.login'));
+
+                    } else{
+                        return back()->with('errPass','Mật khẩu không đúng, vui lòng kiểm tra lại');
+                    }
+                }
+                else{
+                    return back()->with('errPass','Xác nhận mật khẩu không đúng, vui lòng kiểm tra lại');
+                }
+            }
+
+        }
     }
 
 

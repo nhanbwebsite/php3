@@ -135,15 +135,14 @@ class ProductController extends Controller
             // dd($res->all());
        // check product exist
 
-
-
             $CartTemp->save();
             return back()->with('addCartSuccess','Thêm sản phẩm vào giỏ hàng thành công ^^');
        }  else{
 
         //  handle when client don't login
          $CartTemp = new CartTempModel();
-
+        //   $quantityCartTemp =  $CartTemp->getQuantityCarttemp( $res->session()->get('user')->email ?? $res->session()->get('eTemp'));
+        //   dd($quantityCartTemp);
         //   create a code temp for email field car temp when client doesn't login
         if($res->session()->has('eTemp')){
             // $res->session()->forget('eTemp');
@@ -265,4 +264,15 @@ class ProductController extends Controller
             'data' => $data
         ]);
     }
+    public function getQuantityCartTemp(){
+        $CartTemp = new CartTempModel();
+        if(isset($_GET['uie'])){
+            $email = $_GET['uie'];
+            $data  = $CartTemp -> getQuantityCarttemp($email);
+            return response() -> json([
+               'data' => $data
+           ]);
+        }
+    }
+
 }

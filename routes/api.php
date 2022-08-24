@@ -51,6 +51,7 @@ Route::get('subCategoryAPI',[SubCategoryAPIController::class,'getAPISubCetegoryC
 Route::get('SubCategoryDetailsAPIController',[SubCategoryDetailsAPIController::class,'getAPISubCetegoryDetailsController']);
 
 Route::get('/cartAPI',[ProductController::class,"getCartTempAPI"])->name('getCartTemp');
+Route::get('/cartAPIQuanTity',[ProductController::class,"getQuantityCartTemp"])->name('cartTempQuantity');
 
 Route::get('cartUpdateAPI',[ProductController::class,"updateValueNumberCart"]);
 Route::get('cartDeleteAPI',[ProductController::class,"deleteCartTemp"]);
@@ -63,7 +64,6 @@ Route::get('/districtAPI', [APIDistrictController::class,'getDistrictAPI'])->nam
 Route::get('/wardsAPI', [APIWardsController::class,'getWardsAPI'])->name('getWardsAPI');
 // provinceAPI
 Route::get('/provinceAPI', [ProvinceController::class,'getprovince'])->name('provinceAPI');
-
 
 // updateProStatus
 

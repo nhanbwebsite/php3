@@ -72,9 +72,11 @@ Route::post('/checkoutInfomation',[Order_table_Controller::class,"postCheckout"]
 Route::get('/logout',[LoginController::class,'logout'])->name('logout');
 
 Route::get('/login',[LoginController::class,'loginGet']) -> name('client.login');
-Route::post('/login',[LoginController::class,'loginPost']) -> name('client.login');
+Route::post('/login',[LoginController::class,'loginPost']) -> name('client.loginPost');
 Route::get('/forgotpass',[ForgotPassController::class,'index']) -> name('client.forgot');
 Route::post('/forgotpass',[ForgotPassController::class,'handleForgot']) -> name('client.forgot');
+Route::get('/resetPass',[ForgotPassController::class,'reset']) -> name('client.resetPass');
+Route::post('/resetPass',[ForgotPassController::class,'resetPost']) -> name('client.resetPassPost');
 Route::get('/confirmResetPass',[ForgotPassController::class,'resetPass']) -> name('clients.confirmResetPass');
 Route::get('/a',function(){
     return view('clients.sendEmailByOrder');
@@ -83,11 +85,15 @@ Route::get('/a',function(){
 Route::get('/register',[RegisterController::class,'registerGet']) -> name('client.register');
 Route::post('/register',[RegisterController::class,'registerPost']) -> name('client.register');
 
-Route::get('/accountClient',[Order_table_Controller::class,'getOrderByIdUser'])->middleware('checkSessionUser') -> name('clients.customer_account_management');
+Route::get('/accountClient',[Order_table_Controller::class,'getOrderDetailsByUser'])->middleware('checkSessionUser') -> name('clients.customer_account_management');
+Route::post('/accountClient',[Order_table_Controller::class,'handleUpdateAccountClient'])->middleware('checkSessionUser') -> name('clients.handleUpdateAccountClient');
 
 Route::get('/news', function () {
     return view('clients.news');
 }) -> name('client.news');
+Route::get('/newsDetails', function () {
+    return view('clients.newsDetails');
+}) -> name('client.newsDetails');
 
 // end clients
 // Route admin
@@ -137,7 +143,6 @@ Route::prefix('admin')->middleware('admin.checkLoginAdmin')->group(function () {
         // Bài viết
         Route::get('/',[PostController::class,'index'])->name('amin.post.list');
         Route::get('/add',[PostController::class,'addGet'])->name('amin.post.addGet');
-
     });
     Route::prefix('user')->group(function (){
         // Bài viết
@@ -147,11 +152,11 @@ Route::prefix('admin')->middleware('admin.checkLoginAdmin')->group(function () {
         Route::get('/update/{id}',[UserController::class,'updateUser'])->name('amin.user.updateGet');
         Route::post('/update/{id}',[UserController::class,'handelUpdate'])->name('amin.user.updatePost');
         Route::get('/delete/{id}',[UserController::class,'deleteUser'])->name('amin.user.delete');
-
     });
     Route::prefix('order')->group(function (){
         // Bài viết
         Route::get('/',[OrderController::class,'index'])->name('admin.order.list');
+        Route::get('/orderDetailsByIdorder/{id}',[OrderController::class,'getOrderDetailsByIdOrder'])->name('admin.order.orderDetailsByIdorder');
     });
     Route::prefix('comments')->group(function (){
         // Bài viết
@@ -162,11 +167,7 @@ Route::prefix('admin')->middleware('admin.checkLoginAdmin')->group(function () {
         Route::get('/',[ProductController::class,'chartProductsControllersGetView'])->name('admin.chart.productsByCategory');
         Route::get('/chartProductsByOrder',[ProductController::class,'chartProductsByOrderControllersGetView'])->name('admin.chart.productsByOrder');
     });
-
 });
-
-
-
 
 // end test
 

@@ -1,3 +1,5 @@
+// const { forEach } = require("lodash");
+
 CKEDITOR.replace( 'editorDesc',{
      height: "400px",
 } );
@@ -18,3 +20,15 @@ function chooseFile(inputFile) {
         read.readAsDataURL(inputFile.files[0])
     }
 }
+
+
+
+let sizeAll = document.querySelectorAll('.sizeAll_item');
+let size_old_item_list = document.querySelectorAll('.size_old_item');
+    size_old_item_list.forEach((item) => {
+        sizeAll.forEach((item2) => {
+            if(item.value ==item2.value){
+                item2.disabled = true;
+            }
+        })
+    })

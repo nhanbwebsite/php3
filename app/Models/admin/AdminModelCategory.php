@@ -9,6 +9,13 @@ class AdminModelCategory extends Model
 {
     use HasFactory;
 
+    protected $table='sub_categories';
+    protected $primaryKey='id';
+    public $timestamps = true;
+    protected $fillable=[
+        'sub_category_name',
+    ];
+
     public $subTable = 'sub_categories';
     public $categories = 'categories';
 
@@ -43,12 +50,14 @@ class AdminModelCategory extends Model
         DB::insert('INSERT INTO '. $this -> subTable .'(sub_detail_name,id) values(?,?)',$data);
     }
 
-    protected $table='sub_categories';
-    protected $primaryKey='id';
-    public $timestamps = true;
-    protected $fillable=[
-        'sub_category_name',
-    ];
+    public function checkProByCate($idCate){
 
+        $data = DB::table('products')
+                ->where('id_sub_cate','=',$idCate)
+                ->exists();
+      return $data;
+
+
+}
 
 }

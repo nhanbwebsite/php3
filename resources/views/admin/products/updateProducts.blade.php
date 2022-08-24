@@ -56,7 +56,7 @@
                 @endphp
                 @foreach($listSize as $itemSzie)
                     <div class="form-check">
-                        <input class="form-check-input" name="product_size[]" type="checkbox" checked value="{{$itemSzie}}" id="flexCheckDefault-{{$itemSzie}}">
+                        <input class="form-check-input size_old_item" name="product_size[]" type="checkbox" checked value="{{$itemSzie}}" id="flexCheckDefault-{{$itemSzie}}">
                         <label class="form-check-label" for="flexCheckDefault-{{$itemSzie}}">
                             {{$itemSzie}}
                         </label>
@@ -64,6 +64,17 @@
                 @endforeach
 
               </div>
+              <div class="box__size sizeAll">
+                @foreach($listSizeAll as $item)
+                <div class="form-check">
+                    <input class="form-check-input sizeAll_item" name="product_size[]" type="checkbox"  value="{{$item->size}}" id="flexCheckDefaultSizeOld-{{$item->size}}">
+                    <label class="form-check-label" for="flexCheckDefault-{{$item->size}}">
+                        {{$item->size}}
+                    </label>
+                </div>
+                @endforeach
+              </div>
+
               @error('product_size')
               <span style="color:red" >{{$message}}</span>
               @enderror

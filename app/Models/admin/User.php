@@ -42,4 +42,9 @@ class User extends Model
         return $data;
     }
 
+    public function updateUserByEmail($data){
+      DB::update('UPDATE users SET password = ? WHERE email = ?',$data);
+    }
+
+
 }

@@ -125,7 +125,7 @@
         </ul>
     </li>
     {{-- Post --}}
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a href=# class="nav-link">
                 <i class="fas fa-newspaper"></i>
             <p>
@@ -147,7 +147,7 @@
                 </a>
             </li>
             </ul>
-        </li>
+        </li> --}}
         {{-- Người dùng --}}
 
         <li class="nav-item">
@@ -194,7 +194,7 @@
 </li>
 
 {{-- comment --}}
-<li class="nav-item">
+{{-- <li class="nav-item">
     <a href=# class="nav-link">
         <i class="fas fa-comment"></i>
     <p>
@@ -210,7 +210,7 @@
         </a>
     </li>
     </ul>
-</li>
+</li> --}}
 {{-- end comment --}}
 
 {{-- thống kê --}}

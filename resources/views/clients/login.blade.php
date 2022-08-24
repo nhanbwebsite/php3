@@ -32,6 +32,9 @@
           @if(Session::has('registered'))
           <x-alert type="success" value="Đăng ký công, đăng nhập ngay" />
           @endif
+          @if(Session::has('updateSuccess'))
+             <x-alert type="success" value="{{Session::get('updateSuccess')}}" />
+          @endif
         </div>
 
         <div class="sep"></div>
@@ -64,7 +67,7 @@
             <a class="text-signup text-trang-chu" href="{{route('client.home')}}">Về trang chủ</a>
          </div>
          <br />
-         <a class="text-signup mt-3" href="/quen-mk">Quên mật khẩu </a>
+         <a class="text-signup mt-3" href="{{route('client.forgot')}}">Quên mật khẩu </a>
         </div>
         @csrf
       </form>

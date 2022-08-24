@@ -25,8 +25,9 @@
         <div class="header">
           <h3 class="" >Quên mật khẩu</h3>
           <p class="noteText" style="color: #0d0a0b !important">Bạn quên mật khẩu? đừng quá lo lắng, hãy điền thông tin Email để lấy lại mật khẩu tài khoản.</p>
-          @if(Session::has('errorEmailExist'))
-              <x-alert type="danger" value="{{Session::get('errorEmailExist')}}" />
+
+          @if(Session::has('updateErr'))
+              <x-alert type="danger" value="{{Session::get('updateErr')}}" />
           @endif
 
         </div>

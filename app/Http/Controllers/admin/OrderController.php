@@ -12,6 +12,9 @@ class OrderController extends Controller
     public function index(){
         $order = new Order_table_Model();
         $this->data['orderList'] = $order->getUserByOrderUserId();
+
+        // dd($this->data['orderList']);
+
         return view('admin.order.listOrder',$this->data);
     }
 
@@ -30,4 +33,11 @@ class OrderController extends Controller
             echo 'Cập nhật trạng thái sản phẩm thát bại';
         }
     }
+
+    public function getOrderDetailsByIdOrder($id){
+        $order = new Order_table_Model();
+      $this->data['listOrderDetails'] = $order->  getOrderDetailsByIdOrder($id);
+      return view('admin.order.listOrderDetails',$this->data);
+    }
+
 }

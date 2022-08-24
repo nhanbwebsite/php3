@@ -9,6 +9,11 @@
             {{Session::get('editSuccess')}}
       </div>
        @endif
+       @if(Session::has('producstExist'))
+       <div class="alert alert-danger" role="alert">
+            {{Session::get('producstExist')}}
+      </div>
+       @endif
        {{-- delete alert --}}
        @if(Session::has('deleteSuccess'))
        <div class="alert alert-success" role="alert">

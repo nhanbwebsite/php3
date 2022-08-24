@@ -62,6 +62,7 @@ class Product extends Model
             $data = DB::table('products')
             ->select('*')
             -> where('product_price_discount','>','0')
+            ->where('products.product_status','=',1)
             ->limit(4)
             ->get();
             return $data;
@@ -71,6 +72,7 @@ class Product extends Model
             $data = DB::table('products')
             ->select('*')
             ->orderByDesc('products.created_at')
+            ->where('products.product_status','=',1)
             ->limit(4)
             ->get();
             return $data;

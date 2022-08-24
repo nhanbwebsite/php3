@@ -25,18 +25,27 @@ class AdminproductRequest extends FormRequest
     {
         return [
             'product_name' => 'required|min:6',
+            'product_price' => 'required',
+            'product_size' => 'required',
+            'product_img' => 'required',
         ];
     }
 
     public function messages(){
         return [
             'product_name.required' => ':attribute không được để trống',
+            'product_price.required' => ':attribute không được để trống',
+            'product_size.required' => ':attribute không được để trống',
+            'product_img.required' => ':attribute không được để trống',
         ];
     }
 
     public function attributes(){
         return [
-            'product_name' => 'Tên sản sẩm'
+            'product_name' => 'Tên sản sẩm',
+            'product_price' => 'Giá sản sẩm',
+            'product_size' => 'Size sản sẩm',
+            'product_img' => 'Hình sản sẩm',
         ];
     }
     public function prepareForValidation(){

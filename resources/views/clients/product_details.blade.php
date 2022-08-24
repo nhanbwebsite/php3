@@ -24,22 +24,20 @@ Chi tiết sản phẩm
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Đã thêm sản phẩm vào giỏ hàng</h5>
+            <h3 class="modal-title" id="exampleModalLabel">Đã thêm sản phẩm vào giỏ hàng</h3>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="modal-body">
+          <div hidden class="modal-body">
             @if(Session::has('addCartSuccess'))
             <button type="button" hidden class="btn btn-primary" data-bs-toggle="modal" id="toastModal" data-bs-target="#exampleModal">
                 Successfully
             </button>
 
-                <div class="alert alert-success pa-2" role="alert">
-                    <h4>{{Session::get('addCartSuccess')}}</h4>
-                </div>
+
             @endif
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="close_toast">Tiếp tục mua sắm</button>
+          <div hidden class="modal-footer">
+            <button type="button" class="btn btn-primary fs-2" data-bs-dismiss="modal" id="close_toast">Tiếp tục mua sắm</button>
           </div>
         </div>
       </div>
